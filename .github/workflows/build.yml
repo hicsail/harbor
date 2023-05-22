@@ -9,9 +9,7 @@ on:
   pull_request:
     branches:
       - main
-    types:
-      - opened
-      - closed
+    types: [opened, synchronize, reopened, closed]
 
 jobs:
   gateway:
