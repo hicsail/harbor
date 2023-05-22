@@ -142,6 +142,9 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
+      - name: Generate port number
+        id: port
+        run: echo "::set-output name=port::$(( 10000 + ${{ github.event.pull_request.number }} ))"
       - name: Create Review App
         uses: carlrygart/portainer-stack-deploy@v1
         with:
@@ -151,4 +154,4 @@ jobs:
           password: ${{ secrets.PORTAINER_PASSWORD }}
           stack-name: "harbor-client-review-${{ github.event.pull_request.number }}"
           stack-definition: "./deployment/review.yml"
-          template-variables: '{ "branch": "pr${{ github.event.pull_request.number }}", "client-port": "${{ 10000 + ${{ github.event.pull_request.number }}}}" }'
+          template-variables: '{ "branch": "pr${{ github.event.pull_request.number }}", "client-port": "${{ steps.port.outputs.port }}" }'
