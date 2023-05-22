@@ -33,6 +33,6 @@ import { IntrospectAndCompose, RemoteGraphQLDataSource } from '@apollo/gateway';
         }
       })
     })
-  ],
+  ]
 })
 export class AppModule {}
