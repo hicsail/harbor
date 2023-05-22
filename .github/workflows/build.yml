@@ -168,4 +168,4 @@ jobs:
       - name: Post Comment
         uses: mshick/add-pr-comment@v2
         with:
-          message: Review App Hosted Here [http://199.94.60.241:${{ steps.port.outputs.port }}](http://199.94.60.241:${{ steps.port.outputs.port })
+          message: Review App Hosted Here [http://199.94.60.241:${{ steps.port.outputs.port }}](http://199.94.60.241:${{ steps.port.outputs.port }})
