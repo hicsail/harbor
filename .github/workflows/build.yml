@@ -152,7 +152,7 @@ jobs:
           stack-name: "harbor-client-review-${{ github.event.pull_request.number }}"
           stack-file: "./deployment/review.yml"
           prune: true
-          variables: '{ "branch": "${{ github.event.pull_request.head.ref }}", "client-port": ${{ add(10000, github.event.pull_request.number) }} }'
+          variables: '{ "branch": "${{ github.event.pull_request.head.ref }}", "client-port": $(( 10000 + ${{ github.event.pull_request.number) }})) }'
   delete-review-app:
     runs-on: ubuntu-latest
     if: ${{ github.event_name == 'pull_request' }} && ${{ github.event.action == 'closed' }}
