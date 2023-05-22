@@ -146,12 +146,11 @@ jobs:
       - name: Create Review App
         uses: kgierke/portainer-stack-deployment@v1
         with:
-          portainer-endpoint: "https://port.sail.codes"
+          portainer-url: "https://port.sail.codes"
           portainer-username: ${{ secrets.PORTAINER_USERNAME }}
           portainer-password: ${{ secrets.PORTAINER_PASSWORD }}
           name: "harbor-client-review-${{ github.event.pull_request.number }}"
           file: "./deployment/review.yml"
-          prune: true
           variables: '{ "branch": "${{ github.event.pull_request.head.ref }}", "client-port": "$(( 10000 + ${{ github.event.pull_request.number }}))" }'
   delete-review-app:
     runs-on: ubuntu-latest
@@ -160,7 +159,7 @@ jobs:
       - name: Create Review App
         uses: kgierke/portainer-stack-deployment@v1
         with:
-          portainer-endpoint: "https://port.sail.codes"
+          portainer-url: "https://port.sail.codes"
           portainer-username: ${{ secrets.PORTAINER_USERNAME }}
           portainer-password: ${{ secrets.PORTAINER_PASSWORD }}
           name: "harbor-client-review-${{ github.event.pull_request.number }}"
