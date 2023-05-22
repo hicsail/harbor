@@ -1,0 +1,18 @@
+version: '3.8'
+services:
+  harbor-client:
+    container_name: harbor-client
+    image: hicsail/harbor-client:latest
+    restart: always
+    ports:
+      - 4000:80
+    env_file:
+      - ../stack.env
+  harbor-gateway:
+    container_name: harbor-gateway
+    image: hicsail/harbor-gateway:latest
+    restart: always
+    ports:
+      - 4001:3000
+    env_file:
+      - ../stack.env
