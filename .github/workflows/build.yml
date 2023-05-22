@@ -143,12 +143,12 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
       - name: Create Review App
-        uses: kgierke/portainer-stack-deployment@v1
+        uses: carlrygart/portainer-stack-deploy@v1
         with:
-          portainer-url: "https://port.sail.codes"
-          portainer-endpoint: 3
-          portainer-username: ${{ secrets.PORTAINER_USERNAME }}
-          portainer-password: ${{ secrets.PORTAINER_PASSWORD }}
-          name: "harbor-client-review-${{ github.event.pull_request.number }}"
-          file: "./deployment/review.yml"
-          variables: '{ "branch": "${{ github.event.pull_request.head.ref }}", "client-port": "$(( 10000 + ${{ github.event.pull_request.number }}))" }'
+          portainer-host: "https://port.sail.codes"
+          endpoint-id: 3
+          username: ${{ secrets.PORTAINER_USERNAME }}
+          password: ${{ secrets.PORTAINER_PASSWORD }}
+          stack-name: "harbor-client-review-${{ github.event.pull_request.number }}"
+          stack-definition: "./deployment/review.yml"
+          template-variables: '{ "branch": "${{ github.event.pull_request.head.ref }}", "client-port": "$(( 10000 + ${{ github.event.pull_request.number }}))" }'
