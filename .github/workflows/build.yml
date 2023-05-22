@@ -9,6 +9,9 @@ on:
   pull_request:
     branches:
       - main
+    types:
+      - opened
+      - closed
 
 jobs:
   gateway:
@@ -112,7 +115,7 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           context: ./packages/client
-          push: ${{ github.event_name != 'pull_request' }}
+          push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=gha
@@ -135,3 +138,34 @@ jobs:
           method: "POST"
           url: ${{ secrets.PORTAINER_WEBHOOK_PRODUCTION }}
           preventFailureOnNoResponse: true
+  review-app:
+    runs-on: ubuntu-latest
+    if: ${{ github.event_name == 'pull_request' }}
+    needs: client
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: Create Review App
+        uses: kgierke/portainer-stack-deployment@v1
+        with:
+          portainer-url: "https://port.sail.codes"
+          portainer-username: ${{ secrets.PORTAINER_USERNAME }}
+          portainer-password: ${{ secrets.PORTAINER_PASSWORD }}
+          stack-name: "harbor-client-review-${{ github.event.pull_request.number }}"
+          stack-file: "./deployment/review.yml"
+          prune: true
+          variables:
+            - branch=${{ github.event.pull_request.head.ref }}
+            - client-port=$(( 10000 + ${{ github.event.pull_request.number }} ))
+  delete-review-app:
+    runs-on: ubuntu-latest
+    if: ${{ github.event_name == 'pull_request' }} && ${{ github.event.action == 'closed' }}
+    steps:
+      - name: Create Review App
+        uses: kgierke/portainer-stack-deployment@v1
+        with:
+          portainer-url: "https://port.sail.codes"
+          portainer-username: ${{ secrets.PORTAINER_USERNAME }}
+          portainer-password: ${{ secrets.PORTAINER_PASSWORD }}
+          stack-name: "harbor-client-review-${{ github.event.pull_request.number }}"
+          delete: true
