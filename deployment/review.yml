@@ -1,0 +1,10 @@
+version: '3.8'
+services:
+  harbor-client:
+    container_name: harbor-client-{{ branch }}
+    image: hicsail/harbor-client:{{ branch }}
+    restart: always
+    ports:
+      - {{ client-port }}:80
+    env_file:
+      - ../stack.env
