@@ -151,4 +151,4 @@ jobs:
           password: ${{ secrets.PORTAINER_PASSWORD }}
           stack-name: "harbor-client-review-${{ github.event.pull_request.number }}"
           stack-definition: "./deployment/review.yml"
-          template-variables: '{ "branch": "${{ github.event.pull_request.head.ref }}", "client-port": "$(( 10000 + ${{ github.event.pull_request.number }}))" }'
+          template-variables: '{ "branch": "pr${{ github.event.pull_request.number }}", "client-port": "${{ 10000 + ${{ github.event.pull_request.number }}}}" }'
