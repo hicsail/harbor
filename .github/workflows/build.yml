@@ -145,7 +145,7 @@ jobs:
       - name: Create Review App
         uses: kgierke/portainer-stack-deployment@v1
         with:
-          portainer-url: "https://port.sail.codes"
+          portainer-endpoint: "https://port.sail.codes"
           portainer-username: ${{ secrets.PORTAINER_USERNAME }}
           portainer-password: ${{ secrets.PORTAINER_PASSWORD }}
           name: "harbor-client-review-${{ github.event.pull_request.number }}"
@@ -159,7 +159,7 @@ jobs:
       - name: Create Review App
         uses: kgierke/portainer-stack-deployment@v1
         with:
-          portainer-url: "https://port.sail.codes"
+          portainer-endpoint: "https://port.sail.codes"
           portainer-username: ${{ secrets.PORTAINER_USERNAME }}
           portainer-password: ${{ secrets.PORTAINER_PASSWORD }}
           name: "harbor-client-review-${{ github.event.pull_request.number }}"
