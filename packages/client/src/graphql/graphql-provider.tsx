@@ -9,6 +9,8 @@ export interface GraphqlProviderProps {
 
 export const GraphqlProvider: FC<GraphqlProviderProps> = ({ children }) => {
   const { settings } = useSettings();
+  const { token } = useAuth();
+  const navigate = useNavigate();
   const [httpLink, setHttpLink] = React.useState<HttpLink>();
 
   useEffect(() => {
@@ -16,7 +18,10 @@ export const GraphqlProvider: FC<GraphqlProviderProps> = ({ children }) => {
       setHttpLink(
         new HttpLink({
           uri: settings.VITE_GATEWAY_URL,
-          fetch: fetch
+          fetch: fetch,
+          headers: {
+            authorization: `Bearer ${token}`
+          }
         })
       );
     }
@@ -26,11 +31,22 @@ export const GraphqlProvider: FC<GraphqlProviderProps> = ({ children }) => {
     return <LoadingScreen />;
   }
 
+  const errorLink = onError(({ graphQLErrors }) => {
+    graphQLErrors?.map((error: any) => {
+      if (error.status === 401) {
+        return navigate(Paths.LOGIN);
+      }
+      if (error.status === 403) {
+        return navigate(Paths.PERMISSION_REQUIRED, { replace: true });
+      }
+    });
+  });
+
   const apolloClient = new ApolloClient({
     cache: new InMemoryCache({
       resultCaching: true
     }),
-    link: from([httpLink]),
+    link: from([errorLink, httpLink]),
     defaultOptions: {
       query: {
         errorPolicy: 'ignore',
