@@ -1,0 +1,9 @@
+query users($projectId: ID!) {
+    users(projectId: $projectId) {
+        id
+        fullname
+        email
+        role
+        createdAt
+    }
+}

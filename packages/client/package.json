@@ -10,13 +10,23 @@
     "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "prettier:fix": "prettier --write -l \"src/**/*.ts(x)\"",
-    "prettier": "prettier -l \"src/**/*.ts(x)\""
+    "prettier": "prettier -l \"src/**/*.ts(x)\"",
+    "introspection": "graphql-codegen --config graphql-codegen.yml"
   },
   "dependencies": {
+    "@apollo/client": "^3.7.14",
+    "graphql": "^16.6.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
+    "@graphql-codegen/add": "^4.0.1",
+    "@graphql-codegen/cli": "^3.3.1",
+    "@graphql-codegen/introspection": "^3.0.1",
+    "@graphql-codegen/near-operation-file-preset": "^2.5.0",
+    "@graphql-codegen/typescript": "^3.0.4",
+    "@graphql-codegen/typescript-operations": "^3.0.4",
+    "@graphql-codegen/typescript-react-apollo": "^3.3.7",
     "@types/react": "^18.0.28",
     "@types/react-dom": "^18.0.11",
     "@typescript-eslint/eslint-plugin": "^5.57.1",
