@@ -17,6 +17,11 @@ export const App: FC = () => {
           </ThemeProvider>
         </GraphqlProvider>
       </AuthProvider>
+      <ThemeProvider>
+        <Layout>
+          <></>
+        </Layout>
+      </ThemeProvider>
     </SettingsProvider>
   );
 };

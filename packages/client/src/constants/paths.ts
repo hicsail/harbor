@@ -5,5 +5,4 @@ export enum Paths {
   PERMISSION_REQUIRED = '/permission-required',
   USER_LIST = '/users',
   PROJECT = '/project'
-
 }
