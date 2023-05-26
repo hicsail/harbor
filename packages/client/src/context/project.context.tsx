@@ -38,7 +38,11 @@ export const ProjectProvider: FC<ProjectProviderProps> = (props) => {
     }
   }, [decoded_token]);
 
-  return <ProjectContext.Provider value={{ project }}>{project ? <ThemeProvider theme={projectTheme}>{props.children}</ThemeProvider> : props.children}</ProjectContext.Provider>;
+  return (
+    <ProjectContext.Provider value={{ project }}>
+      <ThemeProvider theme={projectTheme}>{props.children}</ThemeProvider>
+    </ProjectContext.Provider>
+  );
 };
 
 export const useProject = () => useContext(ProjectContext);
