@@ -1,7 +1,9 @@
 import { DarkMode, GitHub, LightMode } from '@mui/icons-material';
-import { AppBar, Avatar, Box, IconButton, Toolbar, Typography } from '@mui/material';
+import { AppBar, Avatar, Box, Button, Drawer, IconButton, Toolbar, Typography } from '@mui/material';
 import React, { FC } from 'react';
 import { useSettings } from '@context/settings.context';
+import { Link } from 'react-router-dom';
+import { Paths } from '@constants/paths';
 
 export interface LayoutProps {
   children: React.ReactNode;
@@ -14,6 +16,11 @@ export const Layout: FC<LayoutProps> = ({ children }) => {
     setSettings({ ...settings, theme: settings.theme === 'light' ? 'dark' : 'light' });
   };
 
+  const [open, setOpen] = React.useState(false);
+
+  const toggleDrawer = (open: boolean) => () => {
+    setOpen(open);
+  };
   return (
     <Box
       sx={{
@@ -26,6 +33,14 @@ export const Layout: FC<LayoutProps> = ({ children }) => {
             {settings.theme === 'light' && <DarkMode color="info" />}
             {settings.theme === 'dark' && <LightMode color="warning" />}
           </IconButton>
+          <Button onClick={toggleDrawer(true)}>Open Drawer</Button>
+          <Drawer anchor={'top'} open={open} onClose={toggleDrawer(false)}>
+            <Box sx={{ width: 'auto' }} role="presentation" onClick={toggleDrawer(false)} onKeyDown={toggleDrawer(false)}>
+              <Box>
+                <Link to={Paths.USER_LIST}>Add Users</Link>
+              </Box>
+            </Box>
+          </Drawer>
         </Toolbar>
       </AppBar>
       {children}

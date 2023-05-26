@@ -8,6 +8,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { Home } from '@pages/home';
 import { Callback } from '@pages/callback';
 import { Paths } from '@constants/paths';
+import { Users } from '@pages/users';
 
 export const App: FC = () => {
   return (
@@ -20,6 +21,7 @@ export const App: FC = () => {
                 <Routes>
                   <Route path={Paths.HOME} element={<Home />} />
                   <Route path={Paths.AUTH_CALLBACK} element={<Callback />} />
+                  <Route path={Paths.USER_LIST} element={<Users />} />
                 </Routes>
               </Layout>
             </ThemeProvider>
