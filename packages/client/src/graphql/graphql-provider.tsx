@@ -25,7 +25,7 @@ export const GraphqlProvider: FC<GraphqlProviderProps> = ({ children }) => {
   });
 
   const httpLink = new HttpLink({
-    uri: process.env.VITE_GATEWAY_URL || 'https://harbor-gateway.sail.codes/graphql',
+    uri: import.meta.env.VITE_GATEWAY_URL || 'https://harbor-gateway.sail.codes/graphql',
     headers: {
       authorization: token ? `Bearer ${token}` : ''
     }
