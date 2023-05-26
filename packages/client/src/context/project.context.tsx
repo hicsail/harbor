@@ -1,5 +1,4 @@
 import React, { createContext, FC, useContext, useEffect, useState } from 'react';
-import jwt_decode from 'jwt-decode';
 import { ProjectModel } from '@graphql/graphql';
 import { useGetProjectLazyQuery } from '@graphql/project/project';
 import { createTheme, ThemeProvider, useTheme } from '@mui/material';
