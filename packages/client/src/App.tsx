@@ -4,24 +4,22 @@ import { Layout } from '@layouts/layout';
 import { SettingsProvider } from '@context/settings.context';
 import { AuthProvider } from '@context/auth.context';
 import { GraphqlProvider } from '@graphql/graphql-provider';
+import { ProjectProvider } from '@context/project.context';
 
 export const App: FC = () => {
   return (
-    <SettingsProvider>
-      <AuthProvider>
-        <GraphqlProvider>
-          <ThemeProvider>
-            <Layout>
-              <></>
-            </Layout>
-          </ThemeProvider>
-        </GraphqlProvider>
-      </AuthProvider>
-      <ThemeProvider>
-        <Layout>
-          <></>
-        </Layout>
-      </ThemeProvider>
-    </SettingsProvider>
+    <ThemeProvider>
+      <SettingsProvider>
+        <AuthProvider>
+          <GraphqlProvider>
+            <ProjectProvider>
+              <Layout>
+                <></>
+              </Layout>
+            </ProjectProvider>
+          </GraphqlProvider>
+        </AuthProvider>
+      </SettingsProvider>
+    </ThemeProvider>
   );
 };
