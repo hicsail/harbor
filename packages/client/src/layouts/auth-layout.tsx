@@ -1,11 +1,9 @@
+import { Paths } from '@constants/paths';
 import { Box, Tab, Tabs, Typography } from '@mui/material';
 import { FC, ReactNode, useState } from 'react';
+import { Outlet, useNavigate } from 'react-router-dom';
 
-export interface LayoutProps {
-  tabLabels: string[];
-  children: ReactNode[];
-  defaultTab: number;
-}
+export interface LayoutProps {}
 
 const a11yProps = (index: any) => {
   return {
@@ -14,40 +12,29 @@ const a11yProps = (index: any) => {
   };
 };
 
-const TabPanel = (props: any) => {
-  const { children, value, index, ...other } = props;
-
-  return (
-    <div role="tabpanel" hidden={value !== index} id={`simple-tabpanel-${index}`} aria-labelledby={`simple-tab-${index}`} {...other}>
-      {value === index && (
-        <Box sx={{ p: 3 }}>
-          <Typography>{children}</Typography>
-        </Box>
-      )}
-    </div>
-  );
-};
-
-export const AuthLayout: FC<LayoutProps> = ({ tabLabels, children, defaultTab }) => {
-  const [value, setValue] = useState(defaultTab);
+export const AuthLayout: FC<LayoutProps> = ({}) => {
+  const navigate = useNavigate();
+  const [value, setValue] = useState(0);
 
   const handleChange = (event: any, newValue: any) => {
     setValue(newValue);
+    switch (newValue) {
+      case 0:
+        navigate(Paths.USER_LIST);
+        break;
+      case 1:
+        navigate(Paths.INVITE);
+        break;
+    }
   };
 
   return (
     <Box>
       <Tabs value={value} onChange={handleChange}>
-        {tabLabels.map((label, index) => (
-          <Tab key={index} label={label} {...a11yProps(index)} />
-        ))}
+        <Tab label="Users" {...a11yProps(0)} />
+        <Tab label="Index" {...a11yProps(1)} />
       </Tabs>
-
-      {children.map((child, index) => (
-        <TabPanel key={index} value={value} index={index}>
-          {child}
-        </TabPanel>
-      ))}
+      <Outlet />
     </Box>
   );
 };
