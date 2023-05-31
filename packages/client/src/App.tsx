@@ -10,6 +10,7 @@ import { Home } from '@pages/home';
 import { Callback } from '@pages/callback';
 import { Paths } from '@constants/paths';
 import { Users } from '@pages/users';
+import { Invite } from '@pages/invite';
 
 export const App: FC = () => {
   return (
@@ -23,6 +24,7 @@ export const App: FC = () => {
                   <Route path={Paths.HOME} element={<Home />} />
                   <Route path={Paths.AUTH_CALLBACK} element={<Callback />} />
                   <Route path={Paths.USER_LIST} element={<Users />} />
+                  <Route path={Paths.INVITE} element={<Invite />} />
                 </Routes>
               </Layout>
             </ThemeProvider>
