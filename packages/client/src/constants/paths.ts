@@ -4,5 +4,6 @@ export enum Paths {
   LOGIN = '/login',
   PERMISSION_REQUIRED = '/permission-required',
   USER_LIST = '/users',
-  PROJECT = '/project'
+  PROJECT = '/project',
+  INVITE = '/users/invite'
 }

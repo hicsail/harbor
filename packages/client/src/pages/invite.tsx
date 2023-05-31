@@ -1,10 +1,8 @@
-import { Box, Button } from '@mui/material';
+import { Box } from '@mui/material';
 import { DataGrid, GridRowsProp, GridColDef } from '@mui/x-data-grid';
 import { useAuth } from '../context/auth.context';
-// import { getUsers } from '../graphql/auth/auth';
-import { useUsersQuery } from '../graphql/auth/auth';
 
-export const Users = () => {
+export const Invite = () => {
   const { token, decoded_token, setToken } = useAuth();
   const projectId = decoded_token?.projectId || '';
   const {
