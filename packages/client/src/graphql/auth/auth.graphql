@@ -1,5 +1,5 @@
-query users($projectId: ID!) {
-  users(projectId: $projectId) {
+query users {
+  users {
     id
     fullname
     email

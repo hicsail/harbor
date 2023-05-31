@@ -5,9 +5,7 @@ import * as Types from '../graphql';
 import { gql } from '@apollo/client';
 import * as Apollo from '@apollo/client';
 const defaultOptions = {} as const;
-export type UsersQueryVariables = Types.Exact<{
-  projectId: Types.Scalars['ID'];
-}>;
+export type UsersQueryVariables = Types.Exact<{ [key: string]: never }>;
 
 export type UsersQuery = {
   __typename?: 'Query';
@@ -15,8 +13,8 @@ export type UsersQuery = {
 };
 
 export const UsersDocument = gql`
-  query users($projectId: ID!) {
-    users(projectId: $projectId) {
+  query users {
+    users {
       id
       fullname
       email
@@ -38,11 +36,10 @@ export const UsersDocument = gql`
  * @example
  * const { data, loading, error } = useUsersQuery({
  *   variables: {
- *      projectId: // value for 'projectId'
  *   },
  * });
  */
-export function useUsersQuery(baseOptions: Apollo.QueryHookOptions<UsersQuery, UsersQueryVariables>) {
+export function useUsersQuery(baseOptions?: Apollo.QueryHookOptions<UsersQuery, UsersQueryVariables>) {
   const options = { ...defaultOptions, ...baseOptions };
   return Apollo.useQuery<UsersQuery, UsersQueryVariables>(UsersDocument, options);
 }

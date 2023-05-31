@@ -116,7 +116,6 @@ export type MutationCreateInviteArgs = {
 };
 
 export type MutationCreateProjectArgs = {
-  authServiceUser: UsernameLoginDto;
   project: ProjectCreateInput;
 };
 
@@ -160,11 +159,13 @@ export type MutationUpdateProjectSettingsArgs = {
 };
 
 export type ProjectAuthMethodsInput = {
+  emailAuth?: InputMaybe<Scalars['Boolean']>;
   googleAuth?: InputMaybe<Scalars['Boolean']>;
 };
 
 export type ProjectAuthMethodsModel = {
   __typename?: 'ProjectAuthMethodsModel';
+  emailAuth: Scalars['Boolean'];
   googleAuth: Scalars['Boolean'];
 };
 
@@ -172,6 +173,7 @@ export type ProjectCreateInput = {
   allowSignup: Scalars['Boolean'];
   description: Scalars['String'];
   displayProjectName: Scalars['Boolean'];
+  emailAuth: Scalars['Boolean'];
   googleAuth: Scalars['Boolean'];
   homePage?: InputMaybe<Scalars['String']>;
   logo?: InputMaybe<Scalars['String']>;
@@ -238,10 +240,6 @@ export type QueryInvitesArgs = {
 
 export type QueryProjectUsersArgs = {
   projectId: Scalars['String'];
-};
-
-export type QueryUsersArgs = {
-  projectId: Scalars['ID'];
 };
 
 export type ResetDto = {
