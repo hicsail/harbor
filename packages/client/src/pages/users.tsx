@@ -1,9 +1,13 @@
 import { Button } from '@mui/material';
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
-import { useUsersQuery } from '@graphql/auth/auth';
+import { useAuth } from '../context/auth.context';
+import { useUsersQuery } from '../graphql/auth/auth';
 
 export const Users = () => {
-  const { data: usersData } = useUsersQuery();
+  const { token, decoded_token, setToken } = useAuth();
+  const projectId = decoded_token?.projectId || '';
+
+  const { data: usersData, called, loading } = useUsersQuery();
 
   const userColumns: GridColDef[] = [
     { field: 'fullname', headerName: 'Full Name', width: 150 },
@@ -14,7 +18,7 @@ export const Users = () => {
       field: 'view',
       headerName: 'View User',
       width: 150,
-      renderCell: () => (
+      renderCell: (params) => (
         <Button variant="contained" size="small">
           View User
         </Button>

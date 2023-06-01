@@ -13,14 +13,20 @@ export const Header: FC = () => {
   return (
     <AppBar position="fixed" elevation={0} sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}>
 <<<<<<< HEAD
+<<<<<<< HEAD
       <Toolbar sx={{ justifyContent: 'end' }}>
         <Typography>Harbor</Typography>
 =======
+=======
+>>>>>>> projects-routing
       <Toolbar>
         <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
           Harbor
         </Typography>
+<<<<<<< HEAD
 >>>>>>> 0b1a9df81f1581a1b8988ecb0c36e47300cf8107
+=======
+>>>>>>> projects-routing
         <IconButton edge="start" color="inherit" aria-label="menu" onClick={toggleDarkMode}>
           {settings.theme === 'light' && <DarkMode color="info" />}
           {settings.theme === 'dark' && <LightMode color="warning" />}
