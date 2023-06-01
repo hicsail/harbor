@@ -1,6 +1,6 @@
 import { Paths } from '@constants/paths';
-import { Box, Tab, Tabs, Typography } from '@mui/material';
-import { FC, ReactNode, useState } from 'react';
+import { Box, Tab, Tabs } from '@mui/material';
+import { FC, useState } from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
 
 export interface LayoutProps {}
@@ -16,7 +16,7 @@ export const AuthLayout: FC<LayoutProps> = ({}) => {
   const navigate = useNavigate();
   const [value, setValue] = useState(0);
 
-  const handleChange = (event: any, newValue: any) => {
+  const handleChange = (_event: any, newValue: any) => {
     setValue(newValue);
     switch (newValue) {
       case 0:
