@@ -12,3 +12,25 @@ query getProject($id: String!) {
     deletedAt
   }
 }
+
+query listProjects {
+  listProjects {
+    id
+    name
+    description
+    logo
+    homePage
+    redirectUrl
+    createdAt
+    updatedAt
+    deletedAt
+    settings {
+      displayProjectName
+      allowSignup
+    }
+    authMethods {
+      googleAuth
+      emailAuth
+    }
+  }
+}

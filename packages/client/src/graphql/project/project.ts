@@ -26,6 +26,26 @@ export type GetProjectQuery = {
   };
 };
 
+export type ListProjectsQueryVariables = Types.Exact<{ [key: string]: never }>;
+
+export type ListProjectsQuery = {
+  __typename?: 'Query';
+  listProjects: Array<{
+    __typename?: 'ProjectModel';
+    id: string;
+    name: string;
+    description?: string | null;
+    logo?: string | null;
+    homePage?: string | null;
+    redirectUrl?: string | null;
+    createdAt: any;
+    updatedAt: any;
+    deletedAt?: any | null;
+    settings: { __typename?: 'ProjectSettingsModel'; displayProjectName: boolean; allowSignup: boolean };
+    authMethods: { __typename?: 'ProjectAuthMethodsModel'; googleAuth: boolean; emailAuth: boolean };
+  }>;
+};
+
 export const GetProjectDocument = gql`
   query getProject($id: String!) {
     getProject(id: $id) {
@@ -70,3 +90,53 @@ export function useGetProjectLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions
 export type GetProjectQueryHookResult = ReturnType<typeof useGetProjectQuery>;
 export type GetProjectLazyQueryHookResult = ReturnType<typeof useGetProjectLazyQuery>;
 export type GetProjectQueryResult = Apollo.QueryResult<GetProjectQuery, GetProjectQueryVariables>;
+export const ListProjectsDocument = gql`
+  query listProjects {
+    listProjects {
+      id
+      name
+      description
+      logo
+      homePage
+      redirectUrl
+      createdAt
+      updatedAt
+      deletedAt
+      settings {
+        displayProjectName
+        allowSignup
+      }
+      authMethods {
+        googleAuth
+        emailAuth
+      }
+    }
+  }
+`;
+
+/**
+ * __useListProjectsQuery__
+ *
+ * To run a query within a React component, call `useListProjectsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useListProjectsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useListProjectsQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useListProjectsQuery(baseOptions?: Apollo.QueryHookOptions<ListProjectsQuery, ListProjectsQueryVariables>) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useQuery<ListProjectsQuery, ListProjectsQueryVariables>(ListProjectsDocument, options);
+}
+export function useListProjectsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<ListProjectsQuery, ListProjectsQueryVariables>) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useLazyQuery<ListProjectsQuery, ListProjectsQueryVariables>(ListProjectsDocument, options);
+}
+export type ListProjectsQueryHookResult = ReturnType<typeof useListProjectsQuery>;
+export type ListProjectsLazyQueryHookResult = ReturnType<typeof useListProjectsLazyQuery>;
+export type ListProjectsQueryResult = Apollo.QueryResult<ListProjectsQuery, ListProjectsQueryVariables>;
