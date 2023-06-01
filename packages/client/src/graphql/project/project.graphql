@@ -1,14 +1,14 @@
 query getProject($id: String!) {
-    getProject(id: $id) {
-        id
-        name
-        description
-        logo
-        muiTheme
-        homePage
-        redirectUrl
-        createdAt
-        updatedAt
-        deletedAt
-    }
+  getProject(id: $id) {
+    id
+    name
+    description
+    logo
+    muiTheme
+    homePage
+    redirectUrl
+    createdAt
+    updatedAt
+    deletedAt
+  }
 }

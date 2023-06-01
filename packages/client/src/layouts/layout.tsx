@@ -21,7 +21,10 @@ export const Layout: FC<LayoutProps> = () => {
       <Header />
       <SideBar>
         <SideListItem nodeId={Paths.USER_LIST} label="Users" path={Paths.USER_LIST} icon={<FontAwesomeIcon icon={faUsers} />} />
-        <SideListItem nodeId={Paths.USER_LIST} label="Invite" path={Paths.INVITE} icon={<FontAwesomeIcon icon={faUserPlus} />} />
+        <SideListItem nodeId={Paths.INVITE} label="Invite" path={Paths.INVITE} icon={<FontAwesomeIcon icon={faUserPlus} />} />
+        <SideListItem nodeId={Paths.PROJECT} label="Project" path={Paths.PROJECT} icon={<FontAwesomeIcon icon={faUsers} />} />
+        <SideListItem nodeId={Paths.SETTINGS} label="Settings" path={Paths.SETTINGS} icon={<FontAwesomeIcon icon={faUsers} />} />
+        <SideListItem nodeId={Paths.AUTH_METHODS} label="Auth Methods" path={Paths.AUTH_METHODS} icon={<FontAwesomeIcon icon={faUsers} />} />
       </SideBar>
       <Box sx={{ flexGrow: 1 }}>
         <Toolbar />
