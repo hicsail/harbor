@@ -1,9 +1,9 @@
-query users($projectId: ID!) {
-    users(projectId: $projectId) {
-        id
-        fullname
-        email
-        role
-        createdAt
-    }
+query users {
+  users {
+    id
+    fullname
+    email
+    role
+    createdAt
+  }
 }
