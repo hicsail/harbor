@@ -1,22 +1,17 @@
-import { DataGrid, GridColDef } from '@mui/x-data-grid';
-import { useAuth } from '../context/auth.context';
-import { useListProjectsQuery } from '../graphql/project/project';
+import { Card, CardContent, CardHeader, Typography } from '@mui/material';
+import { useProject } from '@context/project.context';
 
 export const Settings = () => {
-  const { token, decoded_token, setToken } = useAuth();
-  const projectId = decoded_token?.projectId || '';
+  const { project } = useProject();
+  console.log(project);
 
-  const { data: projectData, called, loading } = useListProjectsQuery();
-
-  const settingColumns: GridColDef[] = [
-    { field: 'displayProjectName', headerName: 'Display Project Name', width: 300 },
-    { field: 'allowSignup', headerName: 'Allow Signup', width: 300 }
-  ];
-
-  const settingsData = projectData?.listProjects?.map((project) => ({
-    id: project.id,
-    ...project.settings
-  }));
-
-  return <DataGrid rows={settingsData || []} columns={settingColumns} />;
+  return (
+    <Card>
+      <CardHeader title="Setting Details" />
+      <CardContent>
+        <Typography>allowSignup: {project?.settings.allowSignup.toString()}</Typography>
+        <Typography>displayProjectName: {project?.settings.displayProjectName.toString()}</Typography>
+      </CardContent>
+    </Card>
+  );
 };

@@ -15,6 +15,7 @@ import { ProjectLayout } from '@layouts/project-layout';
 import { Settings } from '@pages/settings';
 import { AuthMethods } from '@pages/auth-methods';
 import { Home } from '@pages/home';
+import { ProjectProvider } from '@context/project.context';
 
 export const App: FC = () => {
   return (
@@ -22,24 +23,26 @@ export const App: FC = () => {
       <AuthProvider>
         <Router>
           <GraphqlProvider>
-            <ThemeProvider>
-              <Routes>
-                <Route element={<Layout />}>
-                  <Route path={Paths.HOME} element={<Home />} />
-                  <Route element={<AuthLayout />}>
-                    <Route path={Paths.USER_LIST} element={<Users />} />
-                    <Route path={Paths.INVITE} element={<Invite />} />
-                  </Route>
-                  <Route element={<ProjectLayout />}>
+            <ProjectProvider>
+              <ThemeProvider>
+                <Routes>
+                  <Route element={<Layout />}>
+                    <Route path={Paths.HOME} element={<Home />} />
+                    <Route element={<AuthLayout />}>
+                      <Route path={Paths.USER_LIST} element={<Users />} />
+                      <Route path={Paths.INVITE} element={<Invite />} />
+                    </Route>
+                    <Route element={<ProjectLayout />}>
+                      <Route path={Paths.PROJECT} element={<Project />} />
+                      <Route path={Paths.SETTINGS} element={<Settings />} />
+                      <Route path={Paths.AUTH_METHODS} element={<AuthMethods />} />
+                    </Route>
                     <Route path={Paths.PROJECT} element={<Project />} />
-                    <Route path={Paths.SETTINGS} element={<Settings />} />
-                    <Route path={Paths.AUTH_METHODS} element={<AuthMethods />} />
                   </Route>
-                  <Route path={Paths.PROJECT} element={<Project />} />
-                </Route>
-                <Route path={Paths.AUTH_CALLBACK} element={<Callback />} />
-              </Routes>
-            </ThemeProvider>
+                  <Route path={Paths.AUTH_CALLBACK} element={<Callback />} />
+                </Routes>
+              </ThemeProvider>
+            </ProjectProvider>
           </GraphqlProvider>
         </Router>
       </AuthProvider>

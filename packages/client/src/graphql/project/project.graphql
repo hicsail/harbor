@@ -10,6 +10,14 @@ query getProject($id: String!) {
     createdAt
     updatedAt
     deletedAt
+    settings {
+      displayProjectName
+      allowSignup
+    }
+    authMethods {
+      googleAuth
+      emailAuth
+    }
   }
 }
 
@@ -24,13 +32,5 @@ query listProjects {
     createdAt
     updatedAt
     deletedAt
-    settings {
-      displayProjectName
-      allowSignup
-    }
-    authMethods {
-      googleAuth
-      emailAuth
-    }
   }
 }

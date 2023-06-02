@@ -1,22 +1,16 @@
-import { DataGrid, GridColDef } from '@mui/x-data-grid';
-import { useAuth } from '../context/auth.context';
-import { useListProjectsQuery } from '../graphql/project/project';
+import { useProject } from '@context/project.context';
+import { Card, CardContent, CardHeader, Typography } from '@mui/material';
 
 export const AuthMethods = () => {
-  const { token, decoded_token, setToken } = useAuth();
-  const projectId = decoded_token?.projectId || '';
+  const { project } = useProject();
 
-  const { data: projectData, called, loading } = useListProjectsQuery();
-
-  const authMethodsColumns: GridColDef[] = [
-    { field: 'googleAuth', headerName: 'Google Auth', width: 150 },
-    { field: 'emailAuth', headerName: 'Email Auth', width: 150 }
-  ];
-
-  const authMethodsData = projectData?.listProjects?.map((project) => ({
-    id: project.id,
-    ...project.authMethods
-  }));
-
-  return <DataGrid rows={authMethodsData || []} columns={authMethodsColumns} />;
+  return (
+    <Card>
+      <CardHeader title="Auth Methods Details" />
+      <CardContent>
+        <Typography>emailAuth: {project?.authMethods.emailAuth.toString()}</Typography>
+        <Typography>googleAuth: {project?.authMethods.googleAuth.toString()}</Typography>
+      </CardContent>
+    </Card>
+  );
 };

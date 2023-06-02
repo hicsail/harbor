@@ -32,7 +32,7 @@ export const AuthLayout: FC<LayoutProps> = ({}) => {
     <Box>
       <Tabs value={value} onChange={handleChange}>
         <Tab label="Users" {...a11yProps(0)} />
-        <Tab label="Index" {...a11yProps(1)} />
+        <Tab label="Invite" {...a11yProps(1)} />
       </Tabs>
       <Outlet />
     </Box>

@@ -23,6 +23,8 @@ export type GetProjectQuery = {
     createdAt: any;
     updatedAt: any;
     deletedAt?: any | null;
+    settings: { __typename?: 'ProjectSettingsModel'; displayProjectName: boolean; allowSignup: boolean };
+    authMethods: { __typename?: 'ProjectAuthMethodsModel'; googleAuth: boolean; emailAuth: boolean };
   };
 };
 
@@ -41,8 +43,6 @@ export type ListProjectsQuery = {
     createdAt: any;
     updatedAt: any;
     deletedAt?: any | null;
-    settings: { __typename?: 'ProjectSettingsModel'; displayProjectName: boolean; allowSignup: boolean };
-    authMethods: { __typename?: 'ProjectAuthMethodsModel'; googleAuth: boolean; emailAuth: boolean };
   }>;
 };
 
@@ -59,6 +59,14 @@ export const GetProjectDocument = gql`
       createdAt
       updatedAt
       deletedAt
+      settings {
+        displayProjectName
+        allowSignup
+      }
+      authMethods {
+        googleAuth
+        emailAuth
+      }
     }
   }
 `;
@@ -102,14 +110,6 @@ export const ListProjectsDocument = gql`
       createdAt
       updatedAt
       deletedAt
-      settings {
-        displayProjectName
-        allowSignup
-      }
-      authMethods {
-        googleAuth
-        emailAuth
-      }
     }
   }
 `;

@@ -1,21 +1,20 @@
-import { DataGrid, GridColDef } from '@mui/x-data-grid';
-import { useAuth } from '../context/auth.context';
-import { useListProjectsQuery } from '../graphql/project/project';
+import { useProject } from '@context/project.context';
+import { Card, CardContent, CardHeader, Typography } from '@mui/material';
 
 export const Project = () => {
-  const { token, decoded_token, setToken } = useAuth();
-  const projectId = decoded_token?.projectId || '';
+  const { project } = useProject();
 
-  const { data: projectData, called, loading } = useListProjectsQuery();
-
-  const projectColumns: GridColDef[] = [
-    { field: 'name', headerName: 'Name', width: 150 },
-    { field: 'description', headerName: 'Description', width: 150 },
-    { field: 'redirectUrl', headerName: 'Redirect Url', width: 150 },
-    { field: 'logo', headerName: 'Logo', width: 150 },
-    { field: 'muiTheme', headerName: 'MUI Theme', width: 150 },
-    { field: 'homePage', headerName: 'Home Page', width: 150 }
-  ];
-
-  return <DataGrid rows={projectData?.listProjects || []} columns={projectColumns} />;
+  return (
+    <Card>
+      <CardHeader title="Project Details" />
+      <CardContent>
+        <Typography>id: {project?.id}</Typography>
+        <Typography>name: {project?.name}</Typography>
+        <Typography>description: {project?.description}</Typography>
+        <Typography>logo: {project?.logo}</Typography>
+        <Typography>homePage: {project?.homePage}</Typography>
+        <Typography>redirectUrl: {project?.redirectUrl}</Typography>
+      </CardContent>
+    </Card>
+  );
 };
