@@ -16,7 +16,7 @@ export const ProjectLayout: FC<LayoutProps> = ({}) => {
   const navigate = useNavigate();
   const [value, setValue] = useState(0);
 
-  const handleChange = (event: any, newValue: any) => {
+  const handleChange = (newValue: any) => {
     setValue(newValue);
     switch (newValue) {
       case 0:

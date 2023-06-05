@@ -1,5 +1,5 @@
 import { Paths } from '@constants/paths';
-import { Box, CircularProgress, Stack } from '@mui/material';
+import { CircularProgress, Stack } from '@mui/material';
 import { FC, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
