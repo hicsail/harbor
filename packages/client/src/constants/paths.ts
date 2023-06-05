@@ -7,5 +7,6 @@ export enum Paths {
   PROJECT = '/project',
   INVITE = '/users/invite',
   SETTINGS = '/project/settings',
-  AUTH_METHODS = '/project/auth-methods'
+  AUTH_METHODS = '/project/auth-methods',
+  LOGOUT = '/logout'
 }
