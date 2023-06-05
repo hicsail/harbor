@@ -16,6 +16,8 @@ import { Settings } from '@pages/settings';
 import { AuthMethods } from '@pages/auth-methods';
 import { Home } from '@pages/home';
 import { ProjectProvider } from '@context/project.context';
+import { Login } from '@pages/login';
+import { Logout } from '@pages/logout';
 
 export const App: FC = () => {
   return (
@@ -39,6 +41,8 @@ export const App: FC = () => {
                     </Route>
                   </Route>
                   <Route path={Paths.AUTH_CALLBACK} element={<Callback />} />
+                  <Route path={Paths.LOGIN} element={<Login />} />
+                  <Route path={Paths.LOGOUT} element={<Logout />} />
                 </Routes>
               </ThemeProvider>
             </ProjectProvider>
