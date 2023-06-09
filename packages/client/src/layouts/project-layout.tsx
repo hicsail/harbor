@@ -12,7 +12,7 @@ const a11yProps = (index: any) => {
   };
 };
 
-export const AuthLayout: FC<LayoutProps> = ({}) => {
+export const ProjectLayout: FC<LayoutProps> = ({}) => {
   const navigate = useNavigate();
   const [value, setValue] = useState(0);
 
@@ -20,10 +20,13 @@ export const AuthLayout: FC<LayoutProps> = ({}) => {
     setValue(newValue);
     switch (newValue) {
       case 0:
-        navigate(Paths.USER_LIST);
+        navigate(Paths.PROJECT);
         break;
       case 1:
-        navigate(Paths.INVITE);
+        navigate(Paths.SETTINGS);
+        break;
+      case 2:
+        navigate(Paths.AUTH_METHODS);
         break;
     }
   };
@@ -31,8 +34,9 @@ export const AuthLayout: FC<LayoutProps> = ({}) => {
   return (
     <Box>
       <Tabs value={value} onChange={handleChange}>
-        <Tab label="Users" {...a11yProps(0)} />
-        <Tab label="Invite" {...a11yProps(1)} />
+        <Tab label="Project" {...a11yProps(0)} />
+        <Tab label="Settings" {...a11yProps(1)} />
+        <Tab label="Auth Methods" {...a11yProps(2)} />
       </Tabs>
       <Outlet />
     </Box>
