@@ -18,6 +18,10 @@ import { Home } from '@pages/home';
 import { ProjectProvider } from '@context/project.context';
 import { Login } from '@pages/login';
 import { Logout } from '@pages/logout';
+import { PermissionRequired } from '@pages/permission-required';
+import { Error } from '@pages/error';
+import { Maintenance } from '@pages/maintenance';
+import { Page404 } from '@pages/404';
 
 export const App: FC = () => {
   return (
@@ -43,6 +47,10 @@ export const App: FC = () => {
                   <Route path={Paths.AUTH_CALLBACK} element={<Callback />} />
                   <Route path={Paths.LOGIN} element={<Login />} />
                   <Route path={Paths.LOGOUT} element={<Logout />} />
+                  <Route path={Paths.PERMISSION_REQUIRED} element={<PermissionRequired />} />
+                  <Route path={Paths.ERROR} element={<Error />} />
+                  <Route path={Paths.MAINTENANCE} element={<Maintenance />} />
+                  <Route path="*" element={<Page404 />} />
                 </Routes>
               </ThemeProvider>
             </ProjectProvider>
