@@ -28,7 +28,7 @@ const ErrorLayout: FC<ErrorLayoutProps> = ({ title, description, icon }) => {
           </Typography>
           <Typography sx={{ color: 'text.secondary' }}>{description}</Typography>
           <Box sx={{ m: 10 }}>{icon}</Box>
-          <Button size="large" variant="contained" onClick={() => navigate(-1, { replace: true })}>
+          <Button size="large" variant="contained" onClick={() => navigate(-1 as any, { replace: true })}>
             Go back
           </Button>
         </Box>
