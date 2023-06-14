@@ -32,9 +32,7 @@ import configuration from './config/configuration';
             });
           },
           supergraphSdl: new IntrospectAndCompose({
-            subgraphs: [
-              { name: 'auth', url: configService.getOrThrow('auth.uri') }
-            ]
+            subgraphs: [{ name: 'auth', url: configService.getOrThrow('auth.uri') }]
           })
         }
       })
