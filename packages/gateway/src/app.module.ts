@@ -1,12 +1,15 @@
-import { Module } from '@nestjs/common';
-import { ConfigModule, ConfigService } from '@nestjs/config';
-import { GraphQLModule } from '@nestjs/graphql';
-import { ApolloGatewayDriver, ApolloGatewayDriverConfig } from '@nestjs/apollo';
 import { IntrospectAndCompose, RemoteGraphQLDataSource } from '@apollo/gateway';
+import { ApolloGatewayDriver, ApolloGatewayDriverConfig } from '@nestjs/apollo';
+import { Module } from '@nestjs/common';
+import { GraphQLModule } from '@nestjs/graphql';
+import { ConfigModule, ConfigService } from '@nestjs/config';
+import configuration from './config/configuration';
 
 @Module({
   imports: [
-    ConfigModule.forRoot(),
+    ConfigModule.forRoot({
+      load: [configuration]
+    }),
     GraphQLModule.forRootAsync<ApolloGatewayDriverConfig>({
       imports: [ConfigModule],
       inject: [ConfigService],
@@ -17,18 +20,21 @@ import { IntrospectAndCompose, RemoteGraphQLDataSource } from '@apollo/gateway';
           federation: 2
         },
         gateway: {
-          buildService: ({ url }) =>
-            new RemoteGraphQLDataSource({
+          buildService: ({ url }) => {
+            return new RemoteGraphQLDataSource({
               url,
-              willSendRequest: ({ request, context }) => {
+              willSendRequest({ request, context }) {
                 if (context.req && context.req.headers) {
                   // Copy over authentication
                   request.http!.headers.set('authorization', context.req.headers.authorization);
                 }
               }
-            }),
+            });
+          },
           supergraphSdl: new IntrospectAndCompose({
-            subgraphs: [{ name: 'auth', url: configService.getOrThrow('AUTH_SERVICE_URL') }]
+            subgraphs: [
+              { name: 'auth', url: configService.getOrThrow('auth.uri') }
+            ]
           })
         }
       })
