@@ -23,6 +23,8 @@ export type GetProjectQuery = {
     createdAt: any;
     updatedAt: any;
     deletedAt?: any | null;
+    settings: { __typename?: 'ProjectSettingsModel'; allowSignup: boolean; displayProjectName: boolean };
+    authMethods: { __typename?: 'ProjectAuthMethodsModel'; emailAuth: boolean; googleAuth: boolean };
   };
 };
 
@@ -39,6 +41,14 @@ export const GetProjectDocument = gql`
       createdAt
       updatedAt
       deletedAt
+      settings {
+        allowSignup
+        displayProjectName
+      }
+      authMethods {
+        emailAuth
+        googleAuth
+      }
     }
   }
 `;
