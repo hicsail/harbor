@@ -10,5 +10,6 @@ export enum Paths {
   AUTH_METHODS = '/project/auth-methods',
   LOGOUT = '/logout',
   ERROR = '/error',
-  MAINTENANCE = '/maintenance'
+  MAINTENANCE = '/maintenance',
+  PROJECT_LIST = '/projects'
 }
