@@ -22,6 +22,7 @@ import { PermissionRequired } from '@pages/permission-required';
 import { Error } from '@pages/error';
 import { Maintenance } from '@pages/maintenance';
 import { Page404 } from '@pages/404';
+import { ProjectList } from '@pages/project-list';
 
 export const App: FC = () => {
   return (
@@ -43,6 +44,7 @@ export const App: FC = () => {
                       <Route path={Paths.SETTINGS} element={<Settings />} />
                       <Route path={Paths.AUTH_METHODS} element={<AuthMethods />} />
                     </Route>
+                    <Route path={Paths.PROJECT_LIST} element={<ProjectList />} />
                   </Route>
                   <Route path={Paths.AUTH_CALLBACK} element={<Callback />} />
                   <Route path={Paths.LOGIN} element={<Login />} />

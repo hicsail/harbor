@@ -20,3 +20,12 @@ query getProject($id: String!) {
     }
   }
 }
+
+query listProjects {
+  listProjects {
+    id
+    name
+    description
+    logo
+  }
+}
