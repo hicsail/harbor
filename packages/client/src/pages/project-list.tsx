@@ -4,7 +4,7 @@ import { useListProjectsQuery } from '@graphql/project/project';
 import { Paths } from '@constants/paths';
 
 export const ProjectList: FC = () => {
-  const { data, loading, error } = useListProjectsQuery();
+  const { data } = useListProjectsQuery();
 
   const handleLogin = (projectId: string) => {
     const harborCallbackUrl = encodeURIComponent(window.location.origin + Paths.AUTH_CALLBACK);
@@ -30,7 +30,7 @@ export const ProjectList: FC = () => {
               <Button onClick={() => handleLogin(project.id)}>Login</Button>
             </Box>
           </Box>
-          <CardMedia component="img" sx={{ width: 151 }} image={project.logo} alt="Project Logo" />
+          <CardMedia component="img" sx={{ width: 151 }} image={project.logo || ''} alt="Project Logo" />
         </Card>
       ))}
     </>
