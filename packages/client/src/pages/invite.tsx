@@ -1,23 +1,46 @@
-import { Button } from '@mui/material';
+import { PageTitle } from '@components/page-title';
+import { Box, Button, Card, CardContent } from '@mui/material';
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
 
 export const Invite = () => {
   const inviteColumns: GridColDef[] = [
-    { field: 'fullname', headerName: 'Full Name', width: 150 },
     { field: 'email', headerName: 'Email', width: 150 },
-    { field: 'role', headerName: 'Role', width: 150 },
-    { field: 'id', headerName: 'ID', width: 150 },
+    { field: 'status', headerName: 'Status', width: 150 },
+    { field: 'actions', headerName: 'Actions', width: 150 },
     {
-      field: 'view',
-      headerName: 'View Invite',
+      field: 'actions',
+      headerName: 'actions',
       width: 150,
-      renderCell: () => (
-        <Button variant="contained" size="small">
-          View User
-        </Button>
-      )
+      renderCell: (params) => {
+        const { status } = params.row;
+        let buttonVariant: 'outlined' | 'contained' = 'outlined';
+        let buttonText = 'Cancel Invite';
+        let buttonColor: 'warning' | 'primary' = 'warning';
+
+        if (status === 1) {
+          buttonVariant = 'contained';
+          buttonText = 'Resend Invite';
+          buttonColor = 'primary';
+        }
+        return (
+          <Button variant={buttonVariant} size="small" color={buttonColor}>
+            {buttonText}
+          </Button>
+        );
+      }
     }
   ];
 
-  return <DataGrid rows={[]} columns={inviteColumns} />;
+  return (
+    <Box>
+      <Card>
+        <CardContent>
+          <PageTitle title="Invites">
+            <Button variant="contained">Create Invite</Button>
+          </PageTitle>
+          <DataGrid rows={[]} columns={inviteColumns} />
+        </CardContent>
+      </Card>
+    </Box>
+  );
 };
