@@ -28,9 +28,7 @@ export const Layout: FC<LayoutProps> = () => {
       </SideBar>
       <Box sx={{ flexGrow: 1 }}>
         <Toolbar />
-        <Container sx={{ mt: 4 }}>
-          <Outlet />
-        </Container>
+        <Outlet />
       </Box>
       <Footer />
     </Box>
