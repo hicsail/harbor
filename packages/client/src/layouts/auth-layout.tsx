@@ -1,16 +1,9 @@
 import { Paths } from '@constants/paths';
 import { AppBar, Box, Container, Tab, Tabs, Toolbar } from '@mui/material';
-import { FC, useEffect, useState } from 'react';
+import { FC, useState } from 'react';
 import { Link, Outlet, useNavigate } from 'react-router-dom';
 
 export interface LayoutProps {}
-
-// const a11yProps = (index: any) => {
-//   return {
-//     id: `simple-tab-${index}`,
-//     'aria-controls': `simple-tabpanel-${index}`
-//   };
-// };
 
 export const AuthLayout: FC<LayoutProps> = ({}) => {
   const navigate = useNavigate();

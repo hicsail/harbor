@@ -1,4 +1,4 @@
-import { Box, Container, Toolbar } from '@mui/material';
+import { Box, Toolbar } from '@mui/material';
 import { FC } from 'react';
 import { Paths } from '@constants/paths';
 import { SideBar } from '@components/side-bar/side-bar';
