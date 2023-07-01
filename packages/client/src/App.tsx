@@ -27,8 +27,8 @@ import { ProjectList } from '@pages/project-list';
 export const App: FC = () => {
   return (
     <SettingsProvider>
-      <AuthProvider>
-        <Router>
+      <Router>
+        <AuthProvider>
           <GraphqlProvider>
             <ProjectProvider>
               <ThemeProvider>
@@ -57,8 +57,8 @@ export const App: FC = () => {
               </ThemeProvider>
             </ProjectProvider>
           </GraphqlProvider>
-        </Router>
-      </AuthProvider>
+        </AuthProvider>
+      </Router>
     </SettingsProvider>
   );
 };
