@@ -1,6 +1,7 @@
-import { Button } from '@mui/material';
+import { Box, Button, Card, CardContent } from '@mui/material';
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
 import { useUsersQuery } from '@graphql/auth/auth';
+import { PageTitle } from '@components/page-title';
 
 export const Users = () => {
   const { data: usersData } = useUsersQuery();
@@ -21,6 +22,16 @@ export const Users = () => {
       )
     }
   ];
-
-  return <DataGrid rows={usersData?.users || []} columns={userColumns} />;
+  return (
+    <Box>
+      <Card>
+        <CardContent>
+          <PageTitle title="Users">
+            <Button variant="contained">Invite User</Button>
+          </PageTitle>
+          <DataGrid rows={usersData?.users || []} columns={userColumns} />
+        </CardContent>
+      </Card>
+    </Box>
+  );
 };

@@ -1,4 +1,4 @@
-import { Box, Container, Toolbar } from '@mui/material';
+import { Box, Toolbar } from '@mui/material';
 import { FC } from 'react';
 import { Paths } from '@constants/paths';
 import { SideBar } from '@components/side-bar/side-bar';
@@ -28,9 +28,7 @@ export const Layout: FC<LayoutProps> = () => {
       </SideBar>
       <Box sx={{ flexGrow: 1 }}>
         <Toolbar />
-        <Container sx={{ mt: 4 }}>
-          <Outlet />
-        </Container>
+        <Outlet />
       </Box>
       <Footer />
     </Box>
