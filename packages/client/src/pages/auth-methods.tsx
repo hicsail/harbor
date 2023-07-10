@@ -11,7 +11,7 @@ type Params = {
 
 export const AuthMethods = () => {
   const { project } = useProject();
-  const { data: projectData, called, loading } = useGetProjectQuery({ variables: { id: project?.id || '' }, skip: !project?.id });
+  const { data: projectData } = useGetProjectQuery({ variables: { id: project?.id || '' }, skip: !project?.id });
   const [updateProjectAuthMethods] = useUpdateProjectAuthMethodsMutation();
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
