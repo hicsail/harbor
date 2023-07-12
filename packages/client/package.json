@@ -11,7 +11,8 @@
     "preview": "vite preview",
     "prettier:fix": "prettier --write -l \"src/**/*.ts(x)\"",
     "prettier": "prettier -l \"src/**/*.ts(x)\"",
-    "introspection": "graphql-codegen --config graphql-codegen.yml"
+    "introspection": "graphql-codegen --config graphql-codegen.yml",
+    "prebuild": "chmod +x ./generate_env.sh && ./generate_env.sh"
   },
   "dependencies": {
     "@apollo/client": "^3.7.14",
