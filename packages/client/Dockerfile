@@ -16,7 +16,7 @@ COPY --from=builder /usr/src/app/dist /usr/share/nginx/html
 
 WORKDIR /usr/share/nginx/html
 COPY generate_env.sh /
-COPY .env .
+# COPY .env .
 
 # Add bash
 RUN apk add --no-cache bash
