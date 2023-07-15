@@ -24,6 +24,7 @@ import { Maintenance } from '@pages/maintenance';
 import { Page404 } from '@pages/404';
 import { ProjectList } from '@pages/project-list';
 import { User } from '@pages/user';
+import { AdminGuard } from '@guards/admin.guard';
 
 export const App: FC = () => {
   return (
@@ -34,19 +35,21 @@ export const App: FC = () => {
             <ProjectProvider>
               <ThemeProvider>
                 <Routes>
-                  <Route element={<Layout />}>
-                    <Route path={Paths.HOME} element={<Home />} />
-                    <Route element={<AuthLayout />}>
-                      <Route path={Paths.USER_LIST} element={<Users />} />
-                      <Route path={Paths.INVITE} element={<Invite />} />
-                      <Route path={`${Paths.USER_LIST}/:id`} element={<User />} /> {/* Step 2 */}
+                  <Route element={<AdminGuard />}>
+                    <Route element={<Layout />}>
+                      <Route path={Paths.HOME} element={<Home />} />
+                      <Route element={<AuthLayout />}>
+                        <Route path={Paths.USER_LIST} element={<Users />} />
+                        <Route path={Paths.INVITE} element={<Invite />} />
+                        <Route path={`${Paths.USER_LIST}/:id`} element={<User />} /> {/* Step 2 */}
+                      </Route>
+                      <Route element={<ProjectLayout />}>
+                        <Route path={Paths.PROJECT} element={<Project />} />
+                        <Route path={Paths.SETTINGS} element={<Settings />} />
+                        <Route path={Paths.AUTH_METHODS} element={<AuthMethods />} />
+                      </Route>
+                      <Route path={Paths.PROJECT_LIST} element={<ProjectList />} />
                     </Route>
-                    <Route element={<ProjectLayout />}>
-                      <Route path={Paths.PROJECT} element={<Project />} />
-                      <Route path={Paths.SETTINGS} element={<Settings />} />
-                      <Route path={Paths.AUTH_METHODS} element={<AuthMethods />} />
-                    </Route>
-                    <Route path={Paths.PROJECT_LIST} element={<ProjectList />} />
                   </Route>
                   <Route path={Paths.AUTH_CALLBACK} element={<Callback />} />
                   <Route path={Paths.LOGIN} element={<Login />} />
