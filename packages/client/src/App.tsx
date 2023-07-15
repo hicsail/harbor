@@ -23,6 +23,7 @@ import { Error } from '@pages/error';
 import { Maintenance } from '@pages/maintenance';
 import { Page404 } from '@pages/404';
 import { ProjectList } from '@pages/project-list';
+import { User } from '@pages/user';
 
 export const App: FC = () => {
   return (
@@ -38,6 +39,7 @@ export const App: FC = () => {
                     <Route element={<AuthLayout />}>
                       <Route path={Paths.USER_LIST} element={<Users />} />
                       <Route path={Paths.INVITE} element={<Invite />} />
+                      <Route path={`${Paths.USER_LIST}/:id`} element={<User />} /> {/* Step 2 */}
                     </Route>
                     <Route element={<ProjectLayout />}>
                       <Route path={Paths.PROJECT} element={<Project />} />
