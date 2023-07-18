@@ -29,3 +29,41 @@ query listProjects {
     logo
   }
 }
+
+mutation updateProjectSettings($id: String!, $displayProjectName: Boolean, $allowSignup: Boolean) {
+  updateProjectSettings(id: $id, projectSettings: { displayProjectName: $displayProjectName, allowSignup: $allowSignup }) {
+    id
+    name
+    description
+    logo
+    homePage
+    redirectUrl
+    settings {
+      displayProjectName
+      allowSignup
+    }
+    authMethods {
+      googleAuth
+      emailAuth
+    }
+  }
+}
+
+mutation updateProjectAuthMethods($id: String!, $googleAuth: Boolean, $emailAuth: Boolean) {
+  updateProjectAuthMethods(id: $id, projectAuthMethods: { googleAuth: $googleAuth, emailAuth: $emailAuth }) {
+    id
+    name
+    description
+    logo
+    homePage
+    redirectUrl
+    settings {
+      displayProjectName
+      allowSignup
+    }
+    authMethods {
+      googleAuth
+      emailAuth
+    }
+  }
+}
