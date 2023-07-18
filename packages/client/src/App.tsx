@@ -48,9 +48,9 @@ export const App: FC = () => {
                         <Route path={Paths.SETTINGS} element={<Settings />} />
                         <Route path={Paths.AUTH_METHODS} element={<AuthMethods />} />
                       </Route>
-                      <Route path={Paths.PROJECT_LIST} element={<ProjectList />} />
                     </Route>
                   </Route>
+                  <Route path={Paths.PROJECT_LIST} element={<ProjectList />} />
                   <Route path={Paths.AUTH_CALLBACK} element={<Callback />} />
                   <Route path={Paths.LOGIN} element={<Login />} />
                   <Route path={Paths.LOGOUT} element={<Logout />} />
