@@ -2,9 +2,11 @@ import { Box, Button, Card, CardContent } from '@mui/material';
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
 import { useUsersQuery } from '@graphql/auth/auth';
 import { PageTitle } from '@components/page-title';
+import { useNavigate } from 'react-router-dom';
 
 export const Users = () => {
   const { data: usersData } = useUsersQuery();
+  const navigate = useNavigate();
 
   const userColumns: GridColDef[] = [
     { field: 'fullname', headerName: 'Full Name', width: 150 },
@@ -15,8 +17,8 @@ export const Users = () => {
       field: 'view',
       headerName: 'View User',
       width: 150,
-      renderCell: () => (
-        <Button variant="contained" size="small">
+      renderCell: (params) => (
+        <Button variant="contained" size="small" onClick={() => navigate(`/users/${params.row.id}`)}>
           View User
         </Button>
       )
