@@ -3,10 +3,12 @@ import { DataGrid, GridColDef } from '@mui/x-data-grid';
 import { useUsersQuery } from '@graphql/auth/auth';
 import { PageTitle } from '@components/page-title';
 import { useNavigate } from 'react-router-dom';
+import { useSnackbar } from '@context/snackbar.context';
 
 export const Users = () => {
   const { data: usersData } = useUsersQuery();
   const navigate = useNavigate();
+  const { pushMessage } = useSnackbar();
 
   const userColumns: GridColDef[] = [
     { field: 'fullname', headerName: 'Full Name', width: 150 },
@@ -32,6 +34,9 @@ export const Users = () => {
             <Button variant="contained">Invite User</Button>
           </PageTitle>
           <DataGrid rows={usersData?.users || []} columns={userColumns} />
+          <Button variant="contained" size="small" onClick={() => pushMessage('This is a success message', 'success')}>
+            Click for Success
+          </Button>
         </CardContent>
       </Card>
     </Box>
