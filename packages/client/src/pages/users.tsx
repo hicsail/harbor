@@ -8,7 +8,6 @@ import { useSnackbar } from '@context/snackbar.context';
 export const Users = () => {
   const { data: usersData } = useUsersQuery();
   const navigate = useNavigate();
-  const { pushMessage } = useSnackbar();
 
   const userColumns: GridColDef[] = [
     { field: 'fullname', headerName: 'Full Name', width: 150 },
