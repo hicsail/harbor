@@ -34,9 +34,6 @@ export const Users = () => {
             <Button variant="contained">Invite User</Button>
           </PageTitle>
           <DataGrid rows={usersData?.users || []} columns={userColumns} />
-          <Button variant="contained" size="small" onClick={() => pushMessage('This is a success message', 'success')}>
-            Click for Success
-          </Button>
         </CardContent>
       </Card>
     </Box>
