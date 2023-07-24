@@ -135,37 +135,3 @@ jobs:
           method: "POST"
           url: ${{ secrets.PORTAINER_WEBHOOK_PRODUCTION }}
           preventFailureOnNoResponse: true
-  review-app:
-    runs-on: ubuntu-latest
-    if: ${{ github.event_name == 'pull_request' }}
-    needs: client
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
-      - name: Generate port number
-        id: port
-        run: echo "::set-output name=port::$(( 10000 + ${{ github.event.pull_request.number }} ))"
-      - name: Create Review App
-        uses: LGinC/portainer-stack-deploy@master
-        with:
-          serverurl: "https://port.sail.codes"
-          endpointId: 3
-          username: ${{ secrets.PORTAINER_USERNAME }}
-          password: ${{ secrets.PORTAINER_PASSWORD }}
-          stackname: "harbor-client-review-${{ github.event.pull_request.number }}"
-          variables: |
-            port=${{ steps.port.outputs.port }}
-            tag=pr-${{ github.event.pull_request.number }}
-          docker_compose: |
-            version: '3.8'
-            services:
-              harbor-client:
-                container_name: harbor-client-{{ tag }}
-                image: hicsail/harbor-client:{{ tag }}
-                restart: always
-                ports:
-                  - {{ port }}:80
-      - name: Post Comment
-        uses: mshick/add-pr-comment@v2
-        with:
-          message: Review App Hosted Here [http://199.94.60.241:${{ steps.port.outputs.port }}](http://199.94.60.241:${{ steps.port.outputs.port }})
