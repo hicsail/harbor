@@ -6,7 +6,6 @@ export const Invite = () => {
   const inviteColumns: GridColDef[] = [
     { field: 'email', headerName: 'Email', width: 150 },
     { field: 'status', headerName: 'Status', width: 150 },
-    { field: 'actions', headerName: 'Actions', width: 150 },
     {
       field: 'actions',
       headerName: 'actions',

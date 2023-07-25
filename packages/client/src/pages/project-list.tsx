@@ -8,7 +8,7 @@ export const ProjectList: FC = () => {
 
   const handleLogin = (projectId: string) => {
     const harborCallbackUrl = encodeURIComponent(window.location.origin + Paths.AUTH_CALLBACK);
-    const loginUrl = `${import.meta.env.VITE_AUTHSERVICE_URL}`;
+    const loginUrl = `${window._env_.VITE_AUTHSERVICE_URL}`;
     const redirectUrl = `${loginUrl}?projectId=${projectId}&redirectUrl=${harborCallbackUrl}`;
     window.location.replace(redirectUrl);
   };
