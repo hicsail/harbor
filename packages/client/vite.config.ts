@@ -20,5 +20,6 @@ export default defineConfig({
       '@theme': path.join(__dirname, 'src/theme'),
       '@guards': path.join(__dirname, 'src/guards')
     }
-  }
+  },
+  base: '/'
 });
