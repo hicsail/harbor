@@ -5,7 +5,6 @@ import { Form, Formik } from 'formik';
 
 export const Project = () => {
   const { project } = useProject();
-  console.log(project);
 
   return (
     <Card sx={{ marginTop: '30px' }}>

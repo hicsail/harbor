@@ -43,8 +43,8 @@ export const App: FC = () => {
                         <Route path={Paths.USER_LIST} element={<Users />} />
                         <Route path={Paths.INVITE} element={<Invite />} />
                         <Route path={`${Paths.USER_LIST}/:id`} element={<User />} />
-                        <Route path={Paths.CREATE_INVITE} element={<CreateInvite />} />
                       </Route>
+                      <Route path={Paths.CREATE_INVITE} element={<CreateInvite />} />
                       <Route element={<ProjectLayout />}>
                         <Route path={Paths.PROJECT} element={<Project />} />
                         <Route path={Paths.SETTINGS} element={<Settings />} />

@@ -1,0 +1,36 @@
+query getInvites {
+  invites {
+    id
+    email
+    role
+    expiresAt
+    createdAt
+    updatedAt
+    deletedAt
+    status
+  }
+}
+
+query getInvite($id: ID!) {
+  invite(id: $id) {
+    email
+    role
+    expiresAt
+    createdAt
+    updatedAt
+    deletedAt
+    status
+  }
+}
+
+mutation createInvite($email: String!, $role: Int) {
+  createInvite(email: $email, role: $role) {
+    email
+    role
+    expiresAt
+    createdAt
+    updatedAt
+    deletedAt
+    status
+  }
+}
