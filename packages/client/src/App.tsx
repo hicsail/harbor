@@ -25,6 +25,7 @@ import { Page404 } from '@pages/404';
 import { ProjectList } from '@pages/project-list';
 import { User } from '@pages/user';
 import { AdminGuard } from '@guards/admin.guard';
+import { CreateInvite } from '@pages/create-invite';
 
 export const App: FC = () => {
   return (
@@ -41,8 +42,9 @@ export const App: FC = () => {
                       <Route element={<AuthLayout />}>
                         <Route path={Paths.USER_LIST} element={<Users />} />
                         <Route path={Paths.INVITE} element={<Invite />} />
-                        <Route path={`${Paths.USER_LIST}/:id`} element={<User />} /> {/* Step 2 */}
+                        <Route path={`${Paths.USER_LIST}/:id`} element={<User />} />
                       </Route>
+                      <Route path={Paths.CREATE_INVITE} element={<CreateInvite />} />
                       <Route element={<ProjectLayout />}>
                         <Route path={Paths.PROJECT} element={<Project />} />
                         <Route path={Paths.SETTINGS} element={<Settings />} />

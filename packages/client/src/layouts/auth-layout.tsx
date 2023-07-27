@@ -1,31 +1,18 @@
 import { Paths } from '@constants/paths';
 import { AppBar, Box, Container, Tab, Tabs, Toolbar } from '@mui/material';
-import { FC, useState } from 'react';
-import { Link, Outlet, useNavigate } from 'react-router-dom';
+import { FC } from 'react';
+import { Link, Outlet, useLocation } from 'react-router-dom';
 
 export interface LayoutProps {}
 
 export const AuthLayout: FC<LayoutProps> = ({}) => {
-  const navigate = useNavigate();
-  const [value, setValue] = useState(Paths.USER_LIST);
-
-  const handleChange = (newValue: any) => {
-    setValue(newValue);
-    switch (newValue) {
-      case Paths.USER_LIST:
-        navigate(Paths.USER_LIST);
-        break;
-      case Paths.INVITE:
-        navigate(Paths.INVITE);
-        break;
-    }
-  };
+  const location = useLocation();
 
   return (
     <Box>
-      <AppBar position="sticky" sx={{}}>
+      <AppBar position="sticky" sx={{ backgroundColor: 'white' }}>
         <Toolbar>
-          <Tabs value={value} onChange={handleChange}>
+          <Tabs value={location.pathname}>
             <Tab
               label="Users"
               value={Paths.USER_LIST}
@@ -33,9 +20,9 @@ export const AuthLayout: FC<LayoutProps> = ({}) => {
               component={Link}
               sx={{
                 '&.Mui-selected': {
-                  color: 'white'
+                  color: 'primary'
                 },
-                color: 'white'
+                color: 'primary'
               }}
             />
             <Tab
@@ -45,9 +32,9 @@ export const AuthLayout: FC<LayoutProps> = ({}) => {
               component={Link}
               sx={{
                 '&.Mui-selected': {
-                  color: 'white'
+                  color: 'primary'
                 },
-                color: 'white'
+                color: 'primary'
               }}
             />
           </Tabs>

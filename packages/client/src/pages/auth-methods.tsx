@@ -33,17 +33,20 @@ export const AuthMethods = () => {
     }
   };
   return (
-    <Card>
+    <Card sx={{ marginTop: '30px' }}>
       <CardContent>
         <Grid container spacing={2}>
           <Grid item xs={6}>
-            <FormLabel component="legend">Auth Methods</FormLabel>
+            <FormLabel component="legend">Authentication Methods</FormLabel>
             <FormGroup>
               <FormControlLabel
                 control={<Switch checked={projectData?.getProject.authMethods.googleAuth || false} onChange={handleChange} name="googleAuth" />}
-                label="googleAuth"
+                label="Authenticate with Google"
               />
-              <FormControlLabel control={<Switch checked={projectData?.getProject.authMethods.emailAuth || false} onChange={handleChange} name="emailAuth" />} label="emailAuth" />
+              <FormControlLabel
+                control={<Switch checked={projectData?.getProject.authMethods.emailAuth || false} onChange={handleChange} name="emailAuth" />}
+                label="Authenticate With Email"
+              />
             </FormGroup>
           </Grid>
         </Grid>

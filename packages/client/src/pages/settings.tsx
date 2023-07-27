@@ -34,7 +34,7 @@ export const Settings = () => {
   };
 
   return (
-    <Card>
+    <Card sx={{ marginTop: '30px' }}>
       <CardContent>
         <Grid container spacing={2}>
           <Grid item xs={6}>
@@ -42,11 +42,11 @@ export const Settings = () => {
             <FormGroup>
               <FormControlLabel
                 control={<Switch checked={projectData?.getProject.settings.displayProjectName || false} onChange={handleChange} name="displayProjectName" />}
-                label="displayProjectName"
+                label="Display Project Name"
               />
               <FormControlLabel
                 control={<Switch checked={projectData?.getProject.settings.allowSignup || false} onChange={handleChange} name="allowSignup" />}
-                label="allowSignup"
+                label="Allow Signup"
               />
             </FormGroup>
           </Grid>

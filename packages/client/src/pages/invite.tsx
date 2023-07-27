@@ -1,8 +1,14 @@
 import { PageTitle } from '@components/page-title';
+import { Paths } from '@constants/paths';
+import { useGetInvitesQuery } from '@graphql/invite/invite';
 import { Box, Button, Card, CardContent } from '@mui/material';
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
+import { useNavigate } from 'react-router-dom';
 
 export const Invite = () => {
+  const { data: invitesData } = useGetInvitesQuery();
+  const navigate = useNavigate();
+
   const inviteColumns: GridColDef[] = [
     { field: 'email', headerName: 'Email', width: 150 },
     { field: 'status', headerName: 'Status', width: 150 },
@@ -31,13 +37,17 @@ export const Invite = () => {
   ];
 
   return (
-    <Box>
+    <Box sx={{ marginTop: '30px' }}>
       <Card>
         <CardContent>
           <PageTitle title="Invites">
-            <Button variant="contained">Create Invite</Button>
+            <Button variant="contained" onClick={() => navigate(Paths.CREATE_INVITE)}>
+              Create Invite
+            </Button>
           </PageTitle>
-          <DataGrid rows={[]} columns={inviteColumns} />
+          <Box sx={{ height: 400, width: '100%' }}>
+            <DataGrid rows={invitesData?.invites || []} columns={inviteColumns} />
+          </Box>
         </CardContent>
       </Card>
     </Box>
