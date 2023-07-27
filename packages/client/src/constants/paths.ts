@@ -11,5 +11,6 @@ export enum Paths {
   LOGOUT = '/logout',
   ERROR = '/error',
   MAINTENANCE = '/maintenance',
-  PROJECT_LIST = '/projects'
+  PROJECT_LIST = '/projects',
+  CREATE_INVITE = '/create-invite'
 }

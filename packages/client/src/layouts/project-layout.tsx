@@ -1,44 +1,61 @@
 import { Paths } from '@constants/paths';
-import { Box, Tab, Tabs } from '@mui/material';
-import { FC, useState } from 'react';
-import { Outlet, useNavigate } from 'react-router-dom';
+import { AppBar, Box, Container, Tab, Tabs, Toolbar } from '@mui/material';
+import { FC } from 'react';
+import { Link, Outlet, useLocation } from 'react-router-dom';
 
 export interface LayoutProps {}
 
-const a11yProps = (index: any) => {
-  return {
-    id: `simple-tab-${index}`,
-    'aria-controls': `simple-tabpanel-${index}`
-  };
-};
-
 export const ProjectLayout: FC<LayoutProps> = ({}) => {
-  const navigate = useNavigate();
-  const [value, setValue] = useState(0);
-
-  const handleChange = (newValue: any) => {
-    setValue(newValue);
-    switch (newValue) {
-      case 0:
-        navigate(Paths.PROJECT);
-        break;
-      case 1:
-        navigate(Paths.SETTINGS);
-        break;
-      case 2:
-        navigate(Paths.AUTH_METHODS);
-        break;
-    }
-  };
+  const location = useLocation();
 
   return (
     <Box>
-      <Tabs value={value} onChange={handleChange}>
-        <Tab label="Project" {...a11yProps(0)} />
-        <Tab label="Settings" {...a11yProps(1)} />
-        <Tab label="Auth Methods" {...a11yProps(2)} />
-      </Tabs>
-      <Outlet />
+      <AppBar position="sticky" sx={{ backgroundColor: 'white' }}>
+        <Toolbar>
+          <Tabs value={location.pathname}>
+            <Tab
+              label="Project"
+              value={Paths.PROJECT}
+              to={Paths.PROJECT}
+              component={Link}
+              sx={{
+                '&.Mui-selected': {
+                  color: 'primary'
+                },
+                color: 'primary'
+              }}
+            />
+            <Tab
+              label="Settings"
+              value={Paths.SETTINGS}
+              to={Paths.SETTINGS}
+              component={Link}
+              sx={{
+                '&.Mui-selected': {
+                  color: 'primary'
+                },
+                color: 'primary'
+              }}
+            />
+            <Tab
+              label="Auth Methods"
+              value={Paths.AUTH_METHODS}
+              to={Paths.AUTH_METHODS}
+              component={Link}
+              sx={{
+                '&.Mui-selected': {
+                  color: 'primary'
+                },
+                color: 'primary'
+              }}
+            />
+          </Tabs>
+        </Toolbar>
+      </AppBar>
+
+      <Container>
+        <Outlet />
+      </Container>
     </Box>
   );
 };

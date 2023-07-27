@@ -31,13 +31,15 @@ export const Invite = () => {
   ];
 
   return (
-    <Box>
+    <Box sx={{ marginTop: '30px' }}>
       <Card>
         <CardContent>
           <PageTitle title="Invites">
             <Button variant="contained">Create Invite</Button>
           </PageTitle>
-          <DataGrid rows={[]} columns={inviteColumns} />
+          <Box sx={{ height: 400, width: '100%' }}>
+            <DataGrid rows={[]} columns={inviteColumns} />
+          </Box>
         </CardContent>
       </Card>
     </Box>
