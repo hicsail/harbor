@@ -45,7 +45,7 @@ export const Invite = () => {
               Create Invite
             </Button>
           </PageTitle>
-          <Box sx={{ height: 400, width: '100%' }}>
+          <Box sx={{ height: 400, width: '100%', mt: '15px' }}>
             <DataGrid rows={invitesData?.invites || []} columns={inviteColumns} />
           </Box>
         </CardContent>

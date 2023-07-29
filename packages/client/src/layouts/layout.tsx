@@ -1,17 +1,27 @@
-import { Box, Toolbar } from '@mui/material';
-import { FC } from 'react';
-import { Paths } from '@constants/paths';
-import { SideBar } from '@components/side-bar/side-bar';
-import { SideListItem } from '@components/side-bar/side-list-item';
+import { Box, Drawer, List, ListItemButton, ListItemIcon, ListItemText, Toolbar } from '@mui/material';
+import { FC, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUsers, faUserPlus } from '@fortawesome/free-solid-svg-icons';
+import { faUsers, faClipboardList } from '@fortawesome/free-solid-svg-icons';
 import { Header } from '@components/header';
 import { Footer } from '@components/footer';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
+import { Paths } from '@constants/paths';
+import { TreeView } from '@mui/lab';
 
 export interface LayoutProps {}
 
+const drawerWidth = 120;
+
 export const Layout: FC<LayoutProps> = () => {
+  const [selectedIndex, setSelectedIndex] = useState(1);
+
+  const handleListItemClick = (index: number, path: string) => {
+    setSelectedIndex(index);
+    navigate(path);
+  };
+
+  const navigate = useNavigate();
+
   return (
     <Box
       sx={{
@@ -19,14 +29,34 @@ export const Layout: FC<LayoutProps> = () => {
       }}
     >
       <Header />
-      <SideBar>
-        <SideListItem nodeId={Paths.USER_LIST} label="Users" path={Paths.USER_LIST} icon={<FontAwesomeIcon icon={faUsers} />} />
-        <SideListItem nodeId={Paths.INVITE} label="Invite" path={Paths.INVITE} icon={<FontAwesomeIcon icon={faUserPlus} />} />
-        <SideListItem nodeId={Paths.PROJECT} label="Project" path={Paths.PROJECT} icon={<FontAwesomeIcon icon={faUsers} />} />
-        <SideListItem nodeId={Paths.SETTINGS} label="Settings" path={Paths.SETTINGS} icon={<FontAwesomeIcon icon={faUsers} />} />
-        <SideListItem nodeId={Paths.AUTH_METHODS} label="Auth Methods" path={Paths.AUTH_METHODS} icon={<FontAwesomeIcon icon={faUsers} />} />
-      </SideBar>
-      <Box sx={{ flexGrow: 1 }}>
+
+      <Drawer
+        anchor="left"
+        variant="permanent"
+        sx={{
+          width: drawerWidth,
+          flexShrink: 0,
+          [`& .MuiDrawer-paper`]: { width: drawerWidth, boxSizing: 'border-box' },
+          height: 264
+        }}
+      >
+        <Toolbar />
+        <TreeView sx={{ height: 264, flexGrow: 1, maxWidth: 400, overflowY: 'auto' }}>
+          <List component="nav" aria-label="user and projects">
+            <ListItemButton selected={selectedIndex === 0} onClick={() => handleListItemClick(0, Paths.USER_LIST)}>
+              <ListItemIcon>
+                <FontAwesomeIcon icon={faUsers} />
+              </ListItemIcon>
+            </ListItemButton>
+            <ListItemButton selected={selectedIndex === 1} onClick={() => handleListItemClick(1, Paths.PROJECT)}>
+              <ListItemIcon>
+                <FontAwesomeIcon icon={faClipboardList} />
+              </ListItemIcon>
+            </ListItemButton>
+          </List>
+        </TreeView>
+      </Drawer>
+      <Box sx={{ flexGrow: 1, pb: '30px' }}>
         <Toolbar />
         <Outlet />
       </Box>

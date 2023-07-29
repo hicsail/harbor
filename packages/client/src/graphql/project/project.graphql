@@ -67,3 +67,22 @@ mutation updateProjectAuthMethods($id: String!, $googleAuth: Boolean, $emailAuth
     }
   }
 }
+
+mutation updateProject($id: String!, $name: String, $description: String, $logo: String, $muiTheme: JSON, $homePage: String, $redirectUrl: String) {
+  updateProject(id: $id, settings: { name: $name, description: $description, logo: $logo, muiTheme: $muiTheme, homePage: $homePage, redirectUrl: $redirectUrl }) {
+    id
+    name
+    description
+    logo
+    homePage
+    redirectUrl
+    settings {
+      displayProjectName
+      allowSignup
+    }
+    authMethods {
+      googleAuth
+      emailAuth
+    }
+  }
+}

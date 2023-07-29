@@ -2,6 +2,8 @@ import { Card, CardContent, FormControlLabel, FormGroup, FormLabel, Grid, Switch
 import { useProject } from '@context/project.context';
 import { useGetProjectQuery, useUpdateProjectSettingsMutation } from '@graphql/project/project';
 import { InputMaybe } from '@graphql/graphql';
+import { TwitterPicker } from 'react-color';
+import { useState } from 'react';
 
 type Params = {
   id: string;
@@ -13,6 +15,8 @@ export const Settings = () => {
   const { project } = useProject();
   const { data: projectData } = useGetProjectQuery({ variables: { id: project?.id || '' }, skip: !project?.id });
   const [updateProjectSettings] = useUpdateProjectSettingsMutation();
+  const [primaryPickerColor, setPrimaryPickerColor] = useState('#37d67a');
+  const [secondaryPickerColor, setSecondaryPickerColor] = useState('#37d67a');
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const params: Params = { id: project?.id || '' };
@@ -47,6 +51,18 @@ export const Settings = () => {
               <FormControlLabel
                 control={<Switch checked={projectData?.getProject.settings.allowSignup || false} onChange={handleChange} name="allowSignup" />}
                 label="Allow Signup"
+              />
+              <TwitterPicker
+                color={primaryPickerColor}
+                onChange={(color) => {
+                  setPrimaryPickerColor(color.hex);
+                }}
+              />
+              <TwitterPicker
+                color={secondaryPickerColor}
+                onChange={(color) => {
+                  setSecondaryPickerColor(color.hex);
+                }}
               />
             </FormGroup>
           </Grid>
