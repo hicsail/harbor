@@ -1,4 +1,4 @@
-import { Box, Drawer, List, ListItemButton, ListItemIcon, ListItemText, Toolbar } from '@mui/material';
+import { Box, Drawer, List, ListItemButton, ListItemIcon, Toolbar } from '@mui/material';
 import { FC, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUsers, faClipboardList } from '@fortawesome/free-solid-svg-icons';
