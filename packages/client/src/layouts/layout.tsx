@@ -1,7 +1,7 @@
-import { Box, Drawer, List, ListItemButton, ListItemIcon, Toolbar } from '@mui/material';
+import { Box, Drawer, List, ListItemButton, ListItemIcon, Toolbar, useTheme } from '@mui/material';
 import { FC, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUsers, faClipboardList } from '@fortawesome/free-solid-svg-icons';
+import { faUsers, faClipboardList, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 import { Header } from '@components/header';
 import { Footer } from '@components/footer';
 import { Outlet, useNavigate } from 'react-router-dom';
@@ -14,6 +14,7 @@ const drawerWidth = 120;
 
 export const Layout: FC<LayoutProps> = () => {
   const [selectedIndex, setSelectedIndex] = useState(1);
+  const theme = useTheme();
 
   const handleListItemClick = (index: number, path: string) => {
     setSelectedIndex(index);
@@ -37,7 +38,10 @@ export const Layout: FC<LayoutProps> = () => {
           width: drawerWidth,
           flexShrink: 0,
           [`& .MuiDrawer-paper`]: { width: drawerWidth, boxSizing: 'border-box' },
-          height: 264
+          height: 264,
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'space-between'
         }}
       >
         <Toolbar />
@@ -55,6 +59,19 @@ export const Layout: FC<LayoutProps> = () => {
             </ListItemButton>
           </List>
         </TreeView>
+        <Box
+          sx={{
+            p: 2,
+            borderTop: '1px solid ',
+            backgroundColor: theme.palette.primary.main
+          }}
+        >
+          <ListItemButton onClick={() => navigate(Paths.LOGOUT)}>
+            <ListItemIcon>
+              <FontAwesomeIcon icon={faSignOutAlt} />
+            </ListItemIcon>
+          </ListItemButton>
+        </Box>
       </Drawer>
       <Box sx={{ flexGrow: 1, pb: '30px' }}>
         <Toolbar />
