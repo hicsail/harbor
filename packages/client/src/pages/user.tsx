@@ -12,7 +12,7 @@ export const User = () => {
   });
 
   return (
-    <Card>
+    <Card sx={{ mt: '30px' }}>
       <CardHeader title="User Details" />
       <CardContent>
         <Typography>Fullname: {userData?.getUser.fullname}</Typography>

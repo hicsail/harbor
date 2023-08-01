@@ -16,7 +16,8 @@ export const SideBar: FC<SideBarProps> = ({ children }) => {
       sx={{
         width: drawerWidth,
         flexShrink: 0,
-        [`& .MuiDrawer-paper`]: { width: drawerWidth, boxSizing: 'border-box' }
+        [`& .MuiDrawer-paper`]: { width: drawerWidth, boxSizing: 'border-box' },
+        overflowY: 'auto'
       }}
     >
       <Toolbar />

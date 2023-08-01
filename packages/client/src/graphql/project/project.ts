@@ -77,6 +77,31 @@ export type UpdateProjectAuthMethodsMutation = {
   };
 };
 
+export type UpdateProjectMutationVariables = Types.Exact<{
+  id: Types.Scalars['String'];
+  name?: Types.InputMaybe<Types.Scalars['String']>;
+  description?: Types.InputMaybe<Types.Scalars['String']>;
+  logo?: Types.InputMaybe<Types.Scalars['String']>;
+  muiTheme?: Types.InputMaybe<Types.Scalars['JSON']>;
+  homePage?: Types.InputMaybe<Types.Scalars['String']>;
+  redirectUrl?: Types.InputMaybe<Types.Scalars['String']>;
+}>;
+
+export type UpdateProjectMutation = {
+  __typename?: 'Mutation';
+  updateProject: {
+    __typename?: 'ProjectModel';
+    id: string;
+    name: string;
+    description?: string | null;
+    logo?: string | null;
+    homePage?: string | null;
+    redirectUrl?: string | null;
+    settings: { __typename?: 'ProjectSettingsModel'; displayProjectName: boolean; allowSignup: boolean };
+    authMethods: { __typename?: 'ProjectAuthMethodsModel'; googleAuth: boolean; emailAuth: boolean };
+  };
+};
+
 export const GetProjectDocument = gql`
   query getProject($id: String!) {
     getProject(id: $id) {
@@ -262,3 +287,55 @@ export function useUpdateProjectAuthMethodsMutation(baseOptions?: Apollo.Mutatio
 export type UpdateProjectAuthMethodsMutationHookResult = ReturnType<typeof useUpdateProjectAuthMethodsMutation>;
 export type UpdateProjectAuthMethodsMutationResult = Apollo.MutationResult<UpdateProjectAuthMethodsMutation>;
 export type UpdateProjectAuthMethodsMutationOptions = Apollo.BaseMutationOptions<UpdateProjectAuthMethodsMutation, UpdateProjectAuthMethodsMutationVariables>;
+export const UpdateProjectDocument = gql`
+  mutation updateProject($id: String!, $name: String, $description: String, $logo: String, $muiTheme: JSON, $homePage: String, $redirectUrl: String) {
+    updateProject(id: $id, settings: { name: $name, description: $description, logo: $logo, muiTheme: $muiTheme, homePage: $homePage, redirectUrl: $redirectUrl }) {
+      id
+      name
+      description
+      logo
+      homePage
+      redirectUrl
+      settings {
+        displayProjectName
+        allowSignup
+      }
+      authMethods {
+        googleAuth
+        emailAuth
+      }
+    }
+  }
+`;
+export type UpdateProjectMutationFn = Apollo.MutationFunction<UpdateProjectMutation, UpdateProjectMutationVariables>;
+
+/**
+ * __useUpdateProjectMutation__
+ *
+ * To run a mutation, you first call `useUpdateProjectMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUpdateProjectMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [updateProjectMutation, { data, loading, error }] = useUpdateProjectMutation({
+ *   variables: {
+ *      id: // value for 'id'
+ *      name: // value for 'name'
+ *      description: // value for 'description'
+ *      logo: // value for 'logo'
+ *      muiTheme: // value for 'muiTheme'
+ *      homePage: // value for 'homePage'
+ *      redirectUrl: // value for 'redirectUrl'
+ *   },
+ * });
+ */
+export function useUpdateProjectMutation(baseOptions?: Apollo.MutationHookOptions<UpdateProjectMutation, UpdateProjectMutationVariables>) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useMutation<UpdateProjectMutation, UpdateProjectMutationVariables>(UpdateProjectDocument, options);
+}
+export type UpdateProjectMutationHookResult = ReturnType<typeof useUpdateProjectMutation>;
+export type UpdateProjectMutationResult = Apollo.MutationResult<UpdateProjectMutation>;
+export type UpdateProjectMutationOptions = Apollo.BaseMutationOptions<UpdateProjectMutation, UpdateProjectMutationVariables>;

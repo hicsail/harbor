@@ -34,7 +34,7 @@ export const Users = () => {
               Invite User
             </Button>
           </PageTitle>
-          <Box sx={{ height: 400, width: '100%' }}>
+          <Box sx={{ height: 400, width: '100%', mt: '15px' }}>
             <DataGrid rows={usersData?.users || []} columns={userColumns} />
           </Box>
         </CardContent>
