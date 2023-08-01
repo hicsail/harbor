@@ -39,7 +39,14 @@ export const ProjectProvider: FC<ProjectProviderProps> = (props) => {
 
   return (
     <ProjectContext.Provider value={{ project }}>
-      <ThemeProvider theme={projectTheme}>{props.children}</ThemeProvider>
+      <ThemeProvider
+        theme={createTheme({
+          ...projectTheme,
+          ...project?.muiTheme
+        })}
+      >
+        {props.children}
+      </ThemeProvider>
     </ProjectContext.Provider>
   );
 };

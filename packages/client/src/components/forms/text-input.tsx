@@ -8,13 +8,15 @@ export type TextInputProps = TextFieldProps & {
 
 export const TextInput: FC<TextInputProps> = (props) => {
   const { handleChange, handleBlur, values, touched, errors, isSubmitting } = useFormikContext<any>();
+  const value = values[props.name] || '';
+
   return (
     <FormControl variant={props.variant} fullWidth={props.fullWidth}>
       <TextField
         {...props}
         onChange={handleChange}
         onBlur={handleBlur}
-        value={values[props.name]}
+        value={value}
         disabled={props.disabled || isSubmitting}
         error={!!errors[props.name]}
         helperText={(touched[props.name] && errors[props.name]) as string}

@@ -57,93 +57,30 @@ export const Project = () => {
               console.error(error);
               window.alert('Error in updating project');
             }
-
-            console.log(id, name, description, logo, homePage, redirectUrl, primaryPickerColor, secondaryPickerColor);
           }}
         >
           {({ values, setFieldValue, setFieldTouched }) => (
             <Form>
               <FormLabel>ID</FormLabel>
-              <TextInput
-                autoFocus
-                fullWidth
-                name="id"
-                type="text"
-                margin="normal"
-                InputProps={{
-                  readOnly: true
-                }}
-              />
+              <TextInput autoFocus fullWidth name="id" type="text" margin="normal" disabled />
               <FormLabel>Name</FormLabel>
-              <TextInput
-                autoFocus
-                fullWidth
-                name="name"
-                type="text"
-                margin="normal"
-                // value={values?.name}
-                InputProps={{
-                  readOnly: true
-                }}
-              />
+              <TextInput autoFocus fullWidth name="name" type="text" margin="normal" />
               <FormLabel>Description</FormLabel>
-              <TextInput
-                autoFocus
-                fullWidth
-                name="description"
-                type="text"
-                margin="normal"
-                // value={values?.description}
-                InputProps={{
-                  readOnly: true
-                }}
-              />
+              <TextInput autoFocus fullWidth name="description" type="text" margin="normal" />
               <FormLabel>Logo</FormLabel>
-              <TextInput
-                autoFocus
-                fullWidth
-                name="logo"
-                type="text"
-                margin="normal"
-                // value={values?.logo}
-                InputProps={{
-                  readOnly: true
-                }}
-              />
+              <TextInput autoFocus fullWidth name="logo" type="text" margin="normal" />
               <FormLabel>Home Page</FormLabel>
-              <TextInput
-                autoFocus
-                fullWidth
-                name="homePage"
-                type="text"
-                margin="normal"
-                // value={values?.homePage}
-                InputProps={{
-                  readOnly: true
-                }}
-              />
+              <TextInput autoFocus fullWidth name="homePage" type="text" margin="normal" />
               <FormLabel>Redirect URL</FormLabel>
-              <TextInput
-                autoFocus
-                fullWidth
-                name="redirectUrl"
-                type="text"
-                margin="normal"
-                // value={values?.redirectUrl}
-                InputProps={{
-                  readOnly: true
+              <TextInput autoFocus fullWidth name="redirectUrl" type="text" margin="normal" />
+              <FormLabel>Primary Color</FormLabel>
+              <TwitterPicker
+                color={values?.primaryPickerColor}
+                onChange={(color) => {
+                  setFieldValue('primaryPickerColor', color.hex);
+                  setFieldTouched('primaryPickerColor', true);
                 }}
               />
-              <Box>
-                <FormLabel>Primary Color</FormLabel>
-                <TwitterPicker
-                  color={values?.primaryPickerColor}
-                  onChange={(color) => {
-                    setFieldValue('primaryPickerColor', color.hex);
-                    setFieldTouched('primaryPickerColor', true);
-                  }}
-                />
-              </Box>
               <Box>
                 <FormLabel>Secondary Color</FormLabel>
                 <TwitterPicker

@@ -33,8 +33,8 @@ export const App: FC = () => {
       <Router>
         <AuthProvider>
           <GraphqlProvider>
-            <ProjectProvider>
-              <ThemeProvider>
+            <ThemeProvider>
+              <ProjectProvider>
                 <Routes>
                   <Route element={<AdminGuard />}>
                     <Route element={<Layout />}>
@@ -61,8 +61,8 @@ export const App: FC = () => {
                   <Route path={Paths.MAINTENANCE} element={<Maintenance />} />
                   <Route path="*" element={<Page404 />} />
                 </Routes>
-              </ThemeProvider>
-            </ProjectProvider>
+              </ProjectProvider>
+            </ThemeProvider>
           </GraphqlProvider>
         </AuthProvider>
       </Router>
