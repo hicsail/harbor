@@ -74,8 +74,12 @@ mutation updateProject($id: String!, $name: String, $description: String, $logo:
     name
     description
     logo
+    muiTheme
     homePage
     redirectUrl
+    createdAt
+    updatedAt
+    deletedAt
     settings {
       displayProjectName
       allowSignup

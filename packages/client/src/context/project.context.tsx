@@ -6,9 +6,13 @@ import { useAuth } from '@context/auth.context';
 
 export interface ProjectContextProps {
   project?: ProjectModel;
+  updateProject: (updatedProject: ProjectModel) => void;
 }
 
-const ProjectContext = createContext<ProjectContextProps>({} as ProjectContextProps);
+const ProjectContext = createContext<ProjectContextProps>({
+  project: {} as ProjectModel,
+  updateProject: (updatedProject: ProjectModel) => {} // Placeholder function
+});
 
 export interface ProjectProviderProps {
   children: React.ReactNode;
@@ -37,8 +41,12 @@ export const ProjectProvider: FC<ProjectProviderProps> = (props) => {
     }
   }, [decoded_token]);
 
+  const updateProject = (updatedProject: ProjectModel) => {
+    setProject(updatedProject);
+  };
+
   return (
-    <ProjectContext.Provider value={{ project }}>
+    <ProjectContext.Provider value={{ project, updateProject }}>
       <ThemeProvider
         theme={createTheme({
           ...projectTheme,
