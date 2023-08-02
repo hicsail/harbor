@@ -13,7 +13,7 @@ export const ProjectLayout: FC<LayoutProps> = ({}) => {
     <Box>
       <AppBar position="sticky" sx={{ backgroundColor: theme.palette.background.paper }}>
         <Toolbar>
-          <Tabs value={location.pathname == Paths.PROJECT || location.pathname == Paths.SETTINGS ? location.pathname : false}>
+          <Tabs value={location.pathname == Paths.PROJECT || location.pathname == Paths.SETTINGS || location.pathname == Paths.AUTH_METHODS ? location.pathname : false}>
             <Tab
               label="Project"
               value={Paths.PROJECT}
