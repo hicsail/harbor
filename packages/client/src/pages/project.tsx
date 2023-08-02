@@ -5,7 +5,6 @@ import { Form, Formik } from 'formik';
 import { TwitterPicker } from 'react-color';
 import { SubmitButton } from '@components/forms/submit-button';
 import { useUpdateProjectMutation, useGetProjectQuery } from '@graphql/project/project';
-import { ProjectModel } from '@graphql/graphql';
 
 export const Project = () => {
   const { project, updateProject } = useProject();
