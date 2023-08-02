@@ -1,4 +1,4 @@
-import { Box, Button, Card, CardContent, CardHeader, FormLabel, Typography } from '@mui/material';
+import { Box, Button, Card, CardContent, CardHeader, FormLabel } from '@mui/material';
 import { useParams } from 'react-router-dom';
 import { useGetUserQuery } from '@graphql/user/user';
 import { Formik, Form } from 'formik';

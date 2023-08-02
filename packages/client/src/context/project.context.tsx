@@ -11,7 +11,7 @@ export interface ProjectContextProps {
 
 const ProjectContext = createContext<ProjectContextProps>({
   project: {} as ProjectModel,
-  updateProject: (updatedProject: ProjectModel) => {} // Placeholder function
+  updateProject: ({}) => {} // Placeholder function
 });
 
 export interface ProjectProviderProps {
