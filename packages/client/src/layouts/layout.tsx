@@ -1,4 +1,4 @@
-import { Box, Drawer, List, ListItemButton, ListItemIcon, Toolbar, useTheme } from '@mui/material';
+import { Box, Drawer, List, ListItemButton, ListItemIcon, ListItemText, Toolbar, useTheme } from '@mui/material';
 import { FC, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUsers, faClipboardList, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
@@ -10,7 +10,7 @@ import { TreeView } from '@mui/lab';
 
 export interface LayoutProps {}
 
-const drawerWidth = 120;
+const drawerWidth = 180;
 
 export const Layout: FC<LayoutProps> = () => {
   const [selectedIndex, setSelectedIndex] = useState(1);
@@ -51,11 +51,13 @@ export const Layout: FC<LayoutProps> = () => {
               <ListItemIcon>
                 <FontAwesomeIcon icon={faUsers} />
               </ListItemIcon>
+              <ListItemText primary="Users" />
             </ListItemButton>
             <ListItemButton selected={selectedIndex === 1} onClick={() => handleListItemClick(1, Paths.PROJECT)}>
               <ListItemIcon>
                 <FontAwesomeIcon icon={faClipboardList} />
               </ListItemIcon>
+              <ListItemText primary="Project" />
             </ListItemButton>
           </List>
         </TreeView>

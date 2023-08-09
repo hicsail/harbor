@@ -95,8 +95,12 @@ export type UpdateProjectMutation = {
     name: string;
     description?: string | null;
     logo?: string | null;
+    muiTheme: any;
     homePage?: string | null;
     redirectUrl?: string | null;
+    createdAt: any;
+    updatedAt: any;
+    deletedAt?: any | null;
     settings: { __typename?: 'ProjectSettingsModel'; displayProjectName: boolean; allowSignup: boolean };
     authMethods: { __typename?: 'ProjectAuthMethodsModel'; googleAuth: boolean; emailAuth: boolean };
   };
@@ -294,8 +298,12 @@ export const UpdateProjectDocument = gql`
       name
       description
       logo
+      muiTheme
       homePage
       redirectUrl
+      createdAt
+      updatedAt
+      deletedAt
       settings {
         displayProjectName
         allowSignup

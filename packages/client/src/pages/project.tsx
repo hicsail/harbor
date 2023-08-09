@@ -7,7 +7,7 @@ import { SubmitButton } from '@components/forms/submit-button';
 import { useUpdateProjectMutation, useGetProjectQuery } from '@graphql/project/project';
 
 export const Project = () => {
-  const { project } = useProject();
+  const { project, updateProject } = useProject();
   const { data: projectData } = useGetProjectQuery({ variables: { id: project?.id || '' }, skip: !project?.id });
   const [updateProjectMutation] = useUpdateProjectMutation();
 
@@ -42,7 +42,7 @@ export const Project = () => {
               }
             };
             try {
-              await updateProjectMutation({
+              const updatedProject: any = await updateProjectMutation({
                 variables: {
                   id,
                   name,
@@ -53,6 +53,8 @@ export const Project = () => {
                   redirectUrl
                 }
               });
+
+              updateProject(updatedProject.data?.updateProject);
             } catch (error) {
               console.error(error);
               window.alert('Error in updating project');
