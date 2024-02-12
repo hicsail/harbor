@@ -7,13 +7,15 @@ touch /usr/share/nginx/html/env-config.js
 # Add assignment
 echo "window._env_ = {" >> /usr/share/nginx/html/env-config.js
 
+echo "Starting to process environment variables..."
 # Iterate through all environment variables
 for varname in $(compgen -e); do
+  echo "Found variable: $varname"
   # Skip variables that don't start with VITE_
   if [[ "${varname:0:5}" != "VITE_" ]]; then
     continue
   fi
-
+  echo "Processing $varname" # More detailed debugging line
   # Read value of current variable
   value="${!varname}"
 
