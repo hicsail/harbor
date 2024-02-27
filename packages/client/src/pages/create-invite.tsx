@@ -15,7 +15,6 @@ export const CreateInvite: FC = () => {
         <Formik
           validateOnBlur={false}
           validateOnChange={false}
-          validationSchema={{}}
           enableReinitialize
           initialValues={{
             email: '',
