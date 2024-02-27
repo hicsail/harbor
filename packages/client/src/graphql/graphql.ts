@@ -33,6 +33,7 @@ export type AcceptInviteModel = {
 export type AccessToken = {
   __typename?: 'AccessToken';
   accessToken: Scalars['String'];
+  refreshToken: Scalars['String'];
 };
 
 export type ConfigurableProjectSettings = {
@@ -52,6 +53,11 @@ export type EmailLoginDto = {
 
 export type ForgotDto = {
   email: Scalars['String'];
+  projectId: Scalars['String'];
+};
+
+export type GoogleLoginDto = {
+  credential: Scalars['String'];
   projectId: Scalars['String'];
 };
 
@@ -93,13 +99,16 @@ export type Mutation = {
   createProject: ProjectModel;
   forgotPassword: Scalars['Boolean'];
   loginEmail: AccessToken;
+  loginGoogle: AccessToken;
   loginUsername: AccessToken;
+  refresh: AccessToken;
   resendInvite: InviteModel;
   resetPassword: Scalars['Boolean'];
   signup: AccessToken;
   updateProject: ProjectModel;
   updateProjectAuthMethods: ProjectModel;
   updateProjectSettings: ProjectModel;
+  updateUser: UserModel;
 };
 
 export type MutationAcceptInviteArgs = {
@@ -127,8 +136,16 @@ export type MutationLoginEmailArgs = {
   user: EmailLoginDto;
 };
 
+export type MutationLoginGoogleArgs = {
+  user: GoogleLoginDto;
+};
+
 export type MutationLoginUsernameArgs = {
   user: UsernameLoginDto;
+};
+
+export type MutationRefreshArgs = {
+  refreshToken: Scalars['String'];
 };
 
 export type MutationResendInviteArgs = {
@@ -158,6 +175,11 @@ export type MutationUpdateProjectSettingsArgs = {
   projectSettings: ProjectSettingsInput;
 };
 
+export type MutationUpdateUserArgs = {
+  email: Scalars['String'];
+  fullname: Scalars['String'];
+};
+
 export type ProjectAuthMethodsInput = {
   emailAuth?: InputMaybe<Scalars['Boolean']>;
   googleAuth?: InputMaybe<Scalars['Boolean']>;
@@ -170,11 +192,11 @@ export type ProjectAuthMethodsModel = {
 };
 
 export type ProjectCreateInput = {
-  allowSignup: Scalars['Boolean'];
-  description: Scalars['String'];
-  displayProjectName: Scalars['Boolean'];
-  emailAuth: Scalars['Boolean'];
-  googleAuth: Scalars['Boolean'];
+  allowSignup?: InputMaybe<Scalars['Boolean']>;
+  description?: InputMaybe<Scalars['String']>;
+  displayProjectName?: InputMaybe<Scalars['Boolean']>;
+  emailAuth?: InputMaybe<Scalars['Boolean']>;
+  googleAuth?: InputMaybe<Scalars['Boolean']>;
   homePage?: InputMaybe<Scalars['String']>;
   logo?: InputMaybe<Scalars['String']>;
   muiTheme?: InputMaybe<Scalars['JSON']>;
@@ -217,6 +239,7 @@ export type Query = {
   invite: InviteModel;
   invites: Array<InviteModel>;
   listProjects: Array<ProjectModel>;
+  me: UserModel;
   projectUsers: Array<UserModel>;
   publicKey: Array<Scalars['String']>;
   users: Array<UserModel>;

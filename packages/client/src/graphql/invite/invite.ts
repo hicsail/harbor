@@ -41,6 +41,15 @@ export type CreateInviteMutation = {
   createInvite: { __typename?: 'InviteModel'; email: string; role: number; expiresAt: any; createdAt: any; updatedAt: any; deletedAt?: any | null; status: Types.InviteStatus };
 };
 
+export type CancelInviteMutationVariables = Types.Exact<{
+  id: Types.Scalars['ID'];
+}>;
+
+export type CancelInviteMutation = {
+  __typename?: 'Mutation';
+  cancelInvite: { __typename?: 'InviteModel'; email: string; role: number; expiresAt: any; createdAt: any; updatedAt: any; deletedAt?: any | null; status: Types.InviteStatus };
+};
+
 export const GetInvitesDocument = gql`
   query getInvites {
     invites {
@@ -163,3 +172,42 @@ export function useCreateInviteMutation(baseOptions?: Apollo.MutationHookOptions
 export type CreateInviteMutationHookResult = ReturnType<typeof useCreateInviteMutation>;
 export type CreateInviteMutationResult = Apollo.MutationResult<CreateInviteMutation>;
 export type CreateInviteMutationOptions = Apollo.BaseMutationOptions<CreateInviteMutation, CreateInviteMutationVariables>;
+export const CancelInviteDocument = gql`
+  mutation cancelInvite($id: ID!) {
+    cancelInvite(id: $id) {
+      email
+      role
+      expiresAt
+      createdAt
+      updatedAt
+      deletedAt
+      status
+    }
+  }
+`;
+export type CancelInviteMutationFn = Apollo.MutationFunction<CancelInviteMutation, CancelInviteMutationVariables>;
+
+/**
+ * __useCancelInviteMutation__
+ *
+ * To run a mutation, you first call `useCancelInviteMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCancelInviteMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [cancelInviteMutation, { data, loading, error }] = useCancelInviteMutation({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useCancelInviteMutation(baseOptions?: Apollo.MutationHookOptions<CancelInviteMutation, CancelInviteMutationVariables>) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useMutation<CancelInviteMutation, CancelInviteMutationVariables>(CancelInviteDocument, options);
+}
+export type CancelInviteMutationHookResult = ReturnType<typeof useCancelInviteMutation>;
+export type CancelInviteMutationResult = Apollo.MutationResult<CancelInviteMutation>;
+export type CancelInviteMutationOptions = Apollo.BaseMutationOptions<CancelInviteMutation, CancelInviteMutationVariables>;

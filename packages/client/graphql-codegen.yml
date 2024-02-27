@@ -1,5 +1,5 @@
 overwrite: true
-schema: https://harbor-gateway.sail.codes/graphql
+schema: https://test-harbor-gateway.sail.codes/graphql
 documents: src/graphql/**/*.graphql
 generates:
   src/graphql/graphql.ts:

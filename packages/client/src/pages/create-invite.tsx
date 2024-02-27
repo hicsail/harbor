@@ -4,9 +4,12 @@ import { Formik, Form } from 'formik';
 import { FC } from 'react';
 import { SubmitButton } from '@components/forms/submit-button';
 import { useCreateInviteMutation } from '@graphql/invite/invite';
+import { useNavigate } from 'react-router-dom';
+import { Paths } from '@constants/paths';
 
 export const CreateInvite: FC = () => {
   const [createInviteMutation] = useCreateInviteMutation();
+  const navigate = useNavigate();
 
   return (
     <Card sx={{ margin: '30px' }}>
@@ -24,6 +27,7 @@ export const CreateInvite: FC = () => {
             try {
               await createInviteMutation({ variables: { email, role } });
               console.log('Mutation successful');
+              navigate(Paths.INVITE);
             } catch (error) {
               console.error('Mutation error:', error);
             }

@@ -1,13 +1,23 @@
 import { PageTitle } from '@components/page-title';
 import { Paths } from '@constants/paths';
-import { useGetInvitesQuery } from '@graphql/invite/invite';
+import { useCancelInviteMutation, useGetInvitesQuery } from '@graphql/invite/invite';
 import { Box, Button, Card, CardContent } from '@mui/material';
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
 import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 
 export const Invite = () => {
-  const { data: invitesData } = useGetInvitesQuery();
+  const { data: invitesData, refetch } = useGetInvitesQuery();
+  const [cancel, { data: cancelData }] = useCancelInviteMutation();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    // on canceled invite
+    if (cancelData) {
+      // refetch invites
+      refetch();
+    }
+  }, [cancelData]);
 
   const inviteColumns: GridColDef[] = [
     { field: 'email', headerName: 'Email', width: 150 },
@@ -28,7 +38,14 @@ export const Invite = () => {
           buttonColor = 'primary';
         }
         return (
-          <Button variant={buttonVariant} size="small" color={buttonColor}>
+          <Button
+            variant={buttonVariant}
+            size="small"
+            color={buttonColor}
+            onClick={() => {
+              cancel({ variables: { id: params.row.id } });
+            }}
+          >
             {buttonText}
           </Button>
         );

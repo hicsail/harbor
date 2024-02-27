@@ -34,3 +34,15 @@ mutation createInvite($email: String!, $role: Int) {
     status
   }
 }
+
+mutation cancelInvite($id: ID!) {
+  cancelInvite(id: $id) {
+    email
+    role
+    expiresAt
+    createdAt
+    updatedAt
+    deletedAt
+    status
+  }
+}
