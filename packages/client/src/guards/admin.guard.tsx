@@ -11,7 +11,7 @@ export const AdminGuard: FC = () => {
 
   useEffect(() => {
     if (initialized && !token) {
-      navigate(Paths.HOME);
+      navigate(Paths.PROJECT_LIST);
     } else if (initialized && decoded_token?.role !== 1) {
       navigate(Paths.PERMISSION_REQUIRED);
     }

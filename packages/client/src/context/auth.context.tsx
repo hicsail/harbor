@@ -29,7 +29,6 @@ export const AuthProvider: FC<AuthProviderProps> = (props) => {
   const [token, setToken] = useState<string>();
   const [refreshToken, setRefreshToken] = useState<string>();
   const [decoded_token, setDecodedToken] = useState<DecodedToken>();
-  const navigate = useNavigate();
 
   useEffect(() => {
     const token = restoreToken();
@@ -37,11 +36,10 @@ export const AuthProvider: FC<AuthProviderProps> = (props) => {
     if (token) {
       const decoded_token: DecodedToken = jwt_decode(token);
       const current_time = new Date().getTime() / 1000;
-      if (current_time > decoded_token.exp) {
-        navigate(Paths.LOGOUT);
+      if (current_time < decoded_token.exp) {
+        setToken(token);
+        setDecodedToken(decoded_token);
       }
-      setToken(token);
-      setDecodedToken(decoded_token);
     }
     if (refreshToken) {
       setRefreshToken(refreshToken);
